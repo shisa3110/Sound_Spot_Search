@@ -119,3 +119,6 @@ MVPリリース時
     → Google Place APIを用いて、データを取得。csvファイルに落とし込む。csvファイルをデータベースへ落とし込む。
   ・「演奏可／不可」「付帯設備」「収容人数」「施設のルール等の備考」
     → ユーザーの編集による追加を想定。
+
+## 画面遷移図
+https://www.figma.com/design/8ufxjUSCwOF9D7Y4nC7ZI3/Sound-Spot-Search_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=hnwtErcjwytmImqV-1
