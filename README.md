@@ -124,4 +124,4 @@ MVPリリース時
 https://www.figma.com/design/8ufxjUSCwOF9D7Y4nC7ZI3/Sound-Spot-Search_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=hnwtErcjwytmImqV-1
 
 ## ER図
-![ER図](https://i.gyazo.com/27a906d782ce1d454035ca73e61dbb24.png "ER図")
+![ER図](https://i.gyazo.com/e582c512893e405d25d0985169336eef.png "ER図")
