@@ -84,18 +84,18 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: myapp_production
-    username: myapp
+    database: sound_spot_search
+    username: sound_spot_search_user
     password: <%= ENV["MYAPP_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: myapp_production_cache
+    database: sound_spot_search
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: myapp_production_queue
+    database: sound_spot_search
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: myapp_production_cable
+    database: sound_spot_search
     migrations_paths: db/cable_migrate
