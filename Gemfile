@@ -52,8 +52,7 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  # ユーザー登録機能作成のためのgem
-  gem 'devise'
+  
 end
 
 group :development do
@@ -65,4 +64,9 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+end
+
+group :development, :production, :test do
+  # ユーザー登録機能作成のためのgem。ここに書くのはデプロイ対策。
+  gem 'devise'
 end
