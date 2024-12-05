@@ -8,6 +8,7 @@ module.exports = {
   plugins: [require("daisyui")],
   daisyui: {
     darkTheme: false, // ダークモードをONにする場合は削除
-    themes: ["retro"],
+    themes: {["retro"],
+    },
   },
-}
+};

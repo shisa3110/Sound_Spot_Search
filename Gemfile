@@ -51,8 +51,6 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
-
-  
 end
 
 group :development do
@@ -68,5 +66,5 @@ end
 
 group :development, :production, :test do
   # ユーザー登録機能作成のためのgem。ここに書くのはデプロイ対策。
-  gem 'devise'
+  gem "devise"
 end
