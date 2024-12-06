@@ -3,32 +3,49 @@
 
   <h2 class="text-lg font-bold my-6 text-center">ユーザー登録</h2>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <form class="card-body">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">ユーザー名</span>
+        </label>
+        <input type="name" placeholder="ユーザー名" class="input input-bordered" required />
       </div>
 
-      <div class="field">
-        <%= f.label :password %>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">メールアドレス</span>
+        </label>
+        <input type="email" placeholder="メールアドレス" class="input input-bordered" required />
+      </div>
+
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">パスワード</span>
           <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-       <%= f.password_field :password, autocomplete: "new-password" %>
+            <span class="label-text-alt">
+              <%= @minimum_password_length %> 文字以上
+            </span>
+          <% end %>
+        </label>
+        <input type="password" placeholder="パスワード" class="input input-bordered" required />
       </div>
 
-      <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">パスワード（確認用）</span>
+        </label>
+        <input type="password" name="password_confirmation" placeholder="パスワード（確認用）" class="input input-bordered" required />
       </div>
 
-      <div class="actions">
-        <%= f.submit "Sign up" %>
+      <div class="form-control mt-6">
+        <button class="btn btn-primary">ユーザー登録</button>
+        </div>
+      </form>
+      <div class="text-center mt-4">
+        <%= render "devise/shared/links" %>
       </div>
     <% end %>
-
-    <%= render "devise/shared/links" %>
   </div>
 </div>
