@@ -25,7 +25,11 @@
   </head>
 
   <body>
-    <%= render 'shared/header' %>
+    <% if user_signed_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/header_before_login' %>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <%= yield %>
     <%= render 'shared/footer' %>
