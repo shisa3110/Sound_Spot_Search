@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_05_061920) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_06_152435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "spots", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "category"
+    t.string "post_code"
+    t.string "address", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.string "phone_number"
+    t.string "web_site"
+    t.integer "room_charge"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
