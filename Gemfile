@@ -51,6 +51,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Google Place APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
+  gem "google_places"
 end
 
 group :development do
