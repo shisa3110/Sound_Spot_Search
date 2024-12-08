@@ -54,6 +54,9 @@ group :development, :test do
 
   # Google Place APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
   gem "google_places"
+
+  # 環境変数を使うためのgem。
+  gem "dotenv-rails"
 end
 
 group :development do
