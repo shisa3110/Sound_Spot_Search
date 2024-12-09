@@ -1,4 +1,11 @@
+<% @spots.each do |spot| %>
+  <p> Latitude: <%= spot.latitude %>, Longitude: <%= spot.longitude %></p>
+<% end %>
+</div>
+
 <h2>gmap</h2>
+
+<button type="button" class="get-current-position-btn">現在地を取得する</button>
 <div id='map'></div>
 
 <style>
@@ -9,20 +16,27 @@
 </style>
 
 <script>
-let map
+  let map
 
-function initMap(){
-  geocoder = new google.maps.Geocoder()
+  function initMap(){
+    const mapElement = document.getElementById('map');
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 35.658034, lng:139.701636},
-    zoom: 15,
-  });
+    const mapOptions = {
+      center: {lat: 35.658034, lng:139.701636},
+      zoom: 16,
+    };
 
-  marker = new google.maps.Marker({
-    position:  {lat: 35.658034, lng:39.701636},
-    map: map
-  });
-}
+    const map = new google.maps.Map(mapElement, mapOptions);
+
+    <% @spots.each do |spot| %>
+      new google.maps.Marker({
+        position: {lat: <%= spot.latitude %>, lng: <%= spot.longitude %>}, 
+        map: map,
+        title: '<%= j spot.name %>'
+      });
+    <% end %>
+  }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer>
+</script>
