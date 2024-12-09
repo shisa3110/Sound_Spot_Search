@@ -1,19 +1,9 @@
-<% @spots.each do |spot| %>
-  <p> Latitude: <%= spot.latitude %>, Longitude: <%= spot.longitude %></p>
-<% end %>
-</div>
-
 <h2>gmap</h2>
 
 <button type="button" class="get-current-position-btn">現在地を取得する</button>
-<div id='map'></div>
-
-<style>
-#map {
-  height: 600px;
-  width: 600px;
-}
-</style>
+<div class="map-container">
+  <div id="map"></div>
+</div>
 
 <script>
   let map

@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.map-container {
+    display: flex;
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center;    /* 垂直方向の中央揃え */
+    height: 100vh;          /* ビューポート全体の高さを使用 */
+  }
+  
+  #map {
+    height: 600px;
+    width: 600px;
+  }
