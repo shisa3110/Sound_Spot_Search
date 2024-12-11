@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.container {
+  display: flex;
+  justify-content: center; /* 水平方向の中央揃え */
+}
+
 .map-container {
     display: flex;
     justify-content: center; /* 水平方向の中央揃え */
@@ -11,5 +16,5 @@
   
   #map {
     height: 600px;
-    width: 600px;
+    width: 90%;
   }
