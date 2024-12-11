@@ -19,10 +19,20 @@
     const map = new google.maps.Map(mapElement, mapOptions);
     
     <% @spots.each do |spot| %>
-      var marker = new google.maps.Marker({
+      (() => {
+      const marker = new google.maps.Marker({
         position: {lat: <%= spot.latitude %>, lng: <%= spot.longitude %>},
         map: map,
         title: '<%= j spot.name %>',
+      });
+
+      const infowindow = new google.maps.InfoWindow({
+        content: `
+        <div class="p-4 max-w-s rounded-lg shadow-md flex flex-col items-center">
+          <h1><%= j spot.name %></h1>
+          <p><%= j spot.address %></p>
+        </div>
+        `,
       });
 
       marker.addListener("click", () => {
@@ -32,15 +42,7 @@
         });
       });
 
-      infowindow = new google.maps.InfoWindow({
-        content: `
-        <div class="p-4 max-w-s rounded-lg shadow-md flex flex-col items-center">
-          <h1><%= j spot.name %></h1>
-          <p><%= j spot.phone_number %></p>
-          <p><
-        </div>`,
-        ariaLabel: "Uluru",
-      });
+      })();
       <% end %>
   }  
 
