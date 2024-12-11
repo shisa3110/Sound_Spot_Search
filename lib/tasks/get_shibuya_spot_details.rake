@@ -1,5 +1,6 @@
 require 'csv' #csvファイルを操作するライブラリの読み込み
 require 'open-uri' #open-uriライブラリを読み込んでいる
+require 'json' #jsonライブラリを読み込む
 API_KEY = ENV['GOOGLE_PLACES_API_KEY'] #.envに記述しているAPIキーを代入
 
 namespace :get_shibuya_spot_details do
@@ -13,10 +14,17 @@ namespace :get_shibuya_spot_details do
     end
   
     #place_idから詳細情報を取得するメソッド
-    def get_detail_data(shop)
-      place_id = get_place_id(shop['電話番号'])
-        
+    def get_detail_data(spot)
+      place_id = get_place_id(spot['電話番号'])
+
       if place_id
+        # DB内を探し、既に保存されている場合はスキップ
+        existing_spot = Spot.find_by(place_id: place_id)
+        if existing_spot
+          puts "既に保存済みです: #{spot['スポット名']}"
+          return nil
+        end
+
         #クエリーパラメータの作成
         place_detail_query = URI.encode_www_form(
         place_id: place_id,
@@ -32,7 +40,7 @@ namespace :get_shibuya_spot_details do
         
         #取得したデータを保存するカラム名と同じキー名で、ハッシュ（result）に保存
         result = {}
-        result[:name] = shop['店名']
+        result[:name] = spot['スポット名']
         result[:post_code] = place_detail_data['result']['address_components'].find { |c| c['types'].include?('post_code') }&.fetch('long_name', nil)
         
         full_address = place_detail_data['result']['formatted_address']
@@ -44,7 +52,6 @@ namespace :get_shibuya_spot_details do
         result[:latitude] = place_detail_data['result']['geometry']['location']['lat']
         result[:longitude] = place_detail_data['result']['geometry']['location']['lng']
         result[:place_id] = place_id
-        result[:web_site] = place_detail_data['result']['website']
         
         result
       else
@@ -57,13 +64,13 @@ namespace :get_shibuya_spot_details do
     csv_file = 'lib/tasks/spot.csv'
     #csvファイルの繰り返し処理で実行しデータベースへ保存
     CSV.foreach(csv_file, headers: true) do |row|
-      shop_data = get_detail_data(row)
-      if shop_data
-        shop = Spot.create!(shop_data)
-        puts "#{row['店名']}を保存しました"
+      spot_data = get_detail_data(row)
+      if spot_data
+        spot = Spot.create!(spot_data)
+        puts "#{row['スポット名']}を保存しました"
         puts "----------"
       else
-        puts "#{row['店名']}の保存に失敗しました"
+        puts "#{row['スポット名']}の保存に失敗しました"
       end
     end
   end

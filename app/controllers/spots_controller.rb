@@ -15,6 +15,10 @@ class SpotsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def show
+    @spot = Spot.find(params[:id])
+  end
   
 
   private

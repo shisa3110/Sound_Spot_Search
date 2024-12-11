@@ -6,7 +6,7 @@
 </div>
 
 <script>
-  let map
+  let map;
 
   function initMap(){
     const mapElement = document.getElementById('map');
@@ -17,17 +17,34 @@
     };
 
     const map = new google.maps.Map(mapElement, mapOptions);
-
+    
     <% @spots.each do |spot| %>
-      new google.maps.Marker({
-        position: {lat: <%= spot.latitude %>, lng: <%= spot.longitude %>}, 
+      var marker = new google.maps.Marker({
+        position: {lat: <%= spot.latitude %>, lng: <%= spot.longitude %>},
         map: map,
-        title: '<%= j spot.name %>'
+        title: '<%= j spot.name %>',
       });
 
-    <% end %>
-  }
-</script>
+      marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+        });
+      });
 
+      infowindow = new google.maps.InfoWindow({
+        content: `
+        <div class="p-4 max-w-s rounded-lg shadow-md flex flex-col items-center">
+          <h1><%= j spot.name %></h1>
+          <p><%= j spot.phone_number %></p>
+          <p><
+        </div>`,
+        ariaLabel: "Uluru",
+      });
+      <% end %>
+  }  
+
+  window.initMap = initMap;
+</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer>
 </script>
