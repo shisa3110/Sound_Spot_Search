@@ -1,1 +1,24 @@
-"<% Spot. %>"
+<div class="flex items-center justify-center h-screen bg-background pt-8 pb-12 px-6 w-full">
+  <div class="w-full max-w-lg p-4 rounded-lg shadow-lg bg-my_whit text-center">
+  <h1 class="text-3xl font-bold">
+    <%= j @spot.name %>
+  </h1>
+  <p class="py-1">
+    〒 <%= j @spot.post_code %></br>
+    <%= j @spot.address %>
+  </p>
+  <p class="py-1">
+    TEL: <%= j @spot.phone_number %></br>
+    <a class="link link-hover">
+    <%= link_to @spot.web_site, @spot.web_site, class: "link link-hover", target: "_blank", rel: "noopener" %>
+    </a>
+  </p>
+  <p class="py-1">
+    営業時間</br>
+    <%= simple_format(@spot.opening_hours) %>
+  </p>
+
+
+    
+  </div>
+</div>

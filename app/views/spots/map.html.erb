@@ -31,6 +31,9 @@
         <div class="p-4 max-w-s rounded-lg shadow-md flex flex-col items-center">
           <h1><%= j spot.name %></h1>
           <p><%= j spot.address %></p>
+          <a href="<%= spot_path(spot) %>" class="btn btn-primary">
+            詳細を見る
+          </a>
         </div>
         `,
       });
