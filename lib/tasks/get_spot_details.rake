@@ -3,7 +3,7 @@ require 'open-uri' #open-uriライブラリを読み込んでいる
 require 'json' #jsonライブラリを読み込む
 API_KEY = ENV['GOOGLE_PLACES_API_KEY'] #.envに記述しているAPIキーを代入
 
-namespace :get_shibuya_spot_details do
+namespace :get_spot_details do
   desc 'Fetch and save shop details'
   task :get_and_save_details => :environment do
     #電話番号からplace_idを取得するメソッド
@@ -40,8 +40,8 @@ namespace :get_shibuya_spot_details do
         
         #取得したデータを保存するカラム名と同じキー名で、ハッシュ（result）に保存
         result = {}
-        result[:name] = spot['スポット名']
-        result[:post_code] = place_detail_data['result']['address_components'].find { |c| c['types'].include?('post_code') }&.fetch('long_name', nil)
+        result[:name] = place_detail_data['result']['name']
+        result[:postal_code] = place_detail_data['result']['address_components'].find { |c| c['types'].include?('postal_code') }&.fetch('long_name', nil)
         
         full_address = place_detail_data['result']['formatted_address']
         result[:address] = full_address.sub(/\A[^ ]+/, '')
@@ -67,7 +67,7 @@ namespace :get_shibuya_spot_details do
       spot_data = get_detail_data(row)
       if spot_data
         spot = Spot.create!(spot_data)
-        puts "#{row['スポット名']}を保存しました"
+        puts "Spotを保存しました: #{row['スポット名']}"
         puts "----------"
       else
         puts "#{row['スポット名']}の保存に失敗しました"
