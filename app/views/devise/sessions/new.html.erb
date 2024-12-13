@@ -1,9 +1,8 @@
-<%= render "devise/shared/error_messages", resource: resource %>
-
 <div class="flex items-center justify-center h-screen bg-background pt-8 pb-12 px-6 w-full">
   <div class="w-full max-w-lg p-4 rounded-lg shadow-lg bg-my_white">
 
-    <h2 class="text-lg font-bold my-6 text-center">ログイン</h2>
+    <h2 class="text-lg font-bold my-2 text-center">ログイン</h2>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="card-body">
