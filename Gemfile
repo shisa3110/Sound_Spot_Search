@@ -57,6 +57,10 @@ group :development, :test do
 
   # 環境変数を使うためのgem。
   gem "dotenv-rails"
+
+  # devise用の日本語化gem。
+  gem "devise-i18n"
+  gem "devise-i18n-views"
 end
 
 group :development do
