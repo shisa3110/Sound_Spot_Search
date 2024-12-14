@@ -52,9 +52,6 @@ group :development, :test do
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  # Google Place APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
-  gem "google_places"
-
   # 環境変数を使うためのgem。
   gem "dotenv-rails"
 
@@ -77,4 +74,7 @@ end
 group :development, :production, :test do
   # ユーザー登録機能作成のためのgem。ここに書くのはデプロイ対策。
   gem "devise"
+  # Google Places APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
+  gem "google_places"
+
 end
