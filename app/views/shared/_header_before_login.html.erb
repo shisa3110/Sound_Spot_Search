@@ -1,8 +1,8 @@
 <div class="navbar bg-base-300">
-  <div class="flex-1 font-bold">
-    <%= link_to "Sound Spot Search", root_path %>
+  <div class="flex-1 font-title">
+    <%= link_to "Sound Spazio Search", root_path %>
   </div>
-  <div class="flex-none">
+  <div class="flex-none font-body">
     <ul class="menu menu-horizontal px-1">
       <li>
         <%= link_to "ユーザー登録", new_user_registration_path %>
@@ -13,7 +13,7 @@
       <li>
         <details>
           <summary>メニュー</summary>
-          <ul class="bg-base-100 rounded-t-none p-2">
+          <ul class="bg-base-200 rounded-t-none p-2">
             <%= link_to '地図から探す', spots_map_path %>
           </ul>
         </details>

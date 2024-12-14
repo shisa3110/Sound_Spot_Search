@@ -1,5 +1,5 @@
-<div class="flex items-center justify-center h-screen bg-background pt-8 pb-12 px-6 w-full">
-  <div class="w-full max-w-lg p-4 rounded-lg shadow-lg bg-my_white">
+<div class="flex items-center justify-center h-screen bg-base-100 pt-8 pb-12 px-6 w-full">
+  <div class="w-full max-w-lg p-4 rounded-lg shadow-lg bg-base-200">
 
     <h2 class="text-lg font-bold my-2 text-center">ユーザー登録</h2>
     <%= render "devise/shared/error_messages", resource: resource %>
@@ -39,7 +39,7 @@
         </div>
   
         <div class="form-control mt-6">
-          <%= f.submit "ユーザー登録", class: "btn btn-primary" %>
+          <%= f.submit "ユーザー登録", class: "btn btn-active" %>
         </div>
       
         <div class="text-center mt-4">

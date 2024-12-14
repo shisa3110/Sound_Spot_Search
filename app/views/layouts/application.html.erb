@@ -24,14 +24,16 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-  <body>
+  <body class="font-body">
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% else %>
       <%= render 'shared/header_before_login' %>
     <% end %>
     <p class="notice"><%= notice %></p>
-    <%= yield %>
+    <div class="bg-base-100">
+      <%= yield %>
+    </div>
     <%= render 'shared/footer' %>
   </body>
 </html>

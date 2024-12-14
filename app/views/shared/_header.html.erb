@@ -1,16 +1,16 @@
 <div class="navbar bg-base-300">
-  <div class="flex-1 font-bold">
-    <%= link_to "Sound Spot Search", root_path %>
+  <div class="flex-1 font-title">
+    <%= link_to "Sound Spazio Search", root_path %>
   </div>
   <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
+    <ul class="menu menu-horizontal px-1 font-body">
       <li>
       <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
       </li>
       <li>
         <details>
           <summary>メニュー</summary>
-          <ul class="bg-base-300 rounded-t-none p-2">
+          <ul class="bg-base-200 rounded-t-none p-2">
           <%= link_to '地図から探す', spots_map_path %>
           </ul>
         </details>
