@@ -7,15 +7,15 @@ namespace :get_spot_details do
   desc 'Fetch and save shop details'
   task :get_and_save_details => :environment do
     #電話番号からplace_idを取得するメソッド
-    def get_place_id(phone_number)
+    def get_place_id(name)
       client = GooglePlaces::Client.new(API_KEY)
-      spot = client.spots_by_query(phone_number).first
+      spot = client.spots_by_query(name).first
       spot.place_id if spot
     end
   
     #place_idから詳細情報を取得するメソッド
     def get_detail_data(spot)
-      place_id = get_place_id(spot['電話番号'])
+      place_id = get_place_id(spot['施設名'])
 
       if place_id
         # DB内を探し、既に保存されている場合はスキップ
