@@ -76,5 +76,4 @@ group :development, :production, :test do
   gem "devise"
   # Google Places APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
   gem "google_places"
-
 end
