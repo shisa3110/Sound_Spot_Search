@@ -14,9 +14,11 @@
     </p>
     <p class="py-1">
       TEL: <%= j @spot.phone_number %></br>
-      <a class="link link-hover">
+      <% if valid_url?(@spot.web_site) %>
         <%= link_to @spot.web_site, @spot.web_site, class: "link link-hover", target: "_blank", rel: "noopener" %>
-      </a>
+      <% else %>
+        <p class="text-error">webサイト不明</p>
+      <% end %>
     </p>
     <p class="py-1">
       営業時間</br>
