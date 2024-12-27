@@ -1,1 +1,17 @@
-<h1>Users#show</h1>
+<h1 class="text-xl font-bold text-center py-6">
+  マイページ
+</h1>
+</div>
+<div class="flex items-center justify-center h-screen bg-100 w-full">
+  <div class="w-full max-w-lg py-8 rounded-lg shadow-lg bg-base-200 text-center">
+    <h1 class="text-3xl font-bold">
+      <%= @user.name %>
+    </h1>
+    <p class="py-1">
+      <%= @user.gender %></br>
+    </p>
+    <p class="py-1">
+      <%= @user.email %></br>
+    </p>
+  </div>
+</div>
