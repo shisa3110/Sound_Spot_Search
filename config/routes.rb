@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get "bookmark/create"
-  get "bookmark/destoy"
   devise_for :users, controllers: {
     registrations: 'users/registrations'
 }
