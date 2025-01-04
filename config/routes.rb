@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
 }
-  resource :users, only: [:show] do
+  resource :users, only: %i[show] do
     collection do
       get 'profile', to: 'users#profile'
     end
@@ -16,7 +16,15 @@ Rails.application.routes.draw do
 
   # 地図検索ページのルーティング
   get "spots/map"
-  resources :spots
+  # 施設情報とブックマークしている施設情報を一覧表示するためのルーティング
+  resources :spots, only: %i[index new create show edit update destroy] do
+    collection do
+      get :bookmarks
+    end
+  end
+  
+  # ブックマークつけたり外したりするためのルーティング
+  resources :bookmarks, only: %i[create destroy]
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
