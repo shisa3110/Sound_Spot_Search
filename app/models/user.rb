@@ -19,4 +19,3 @@ def bookmark?(spot)
   bookmark_spots.include?(spot)
 end
 
-
