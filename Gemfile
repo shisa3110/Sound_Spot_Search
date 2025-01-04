@@ -58,6 +58,9 @@ group :development, :test do
   # devise用の日本語化gem。
   gem "devise-i18n"
   gem "devise-i18n-views"
+
+  # enumのi18n化。
+  gem "enum_help"
 end
 
 group :development do
