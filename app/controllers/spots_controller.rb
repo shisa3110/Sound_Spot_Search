@@ -20,6 +20,11 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
   end
 
+  def bookmarks
+    @spots = current_user.bookmarks
+  end
+
+
   private
   def spot_params
     params.require(:spot).permit(:name, :post_code, :address, :phone_number, :web_site, :latitude, :longitude, :opening_hours)

@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      <% if @bookmark_boards.present? %>
+        <%= render @bookmark %>
+      <% else %>
+        <p>ブックマークしている施設はありません。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

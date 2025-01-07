@@ -17,14 +17,13 @@ Rails.application.routes.draw do
   # 地図検索ページのルーティング
   get "spots/map"
   # 施設情報とブックマークしている施設情報を一覧表示するためのルーティング
-  resources :spots, only: %i[index new create show edit update destroy] do
+  resources :spots do
+    # ブックマークつけたり外したりするためのルーティング
+    resources :bookmarks, only: %i[create destroy]
     collection do
       get :bookmarks
     end
   end
-  
-  # ブックマークつけたり外したりするためのルーティング
-  resources :bookmarks, only: %i[create destroy]
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
