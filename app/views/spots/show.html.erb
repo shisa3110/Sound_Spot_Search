@@ -24,5 +24,8 @@
       営業時間</br>
       <%= simple_format(@spot.opening_hours) %>
     </p>
+    <p class="py-1">
+      <%= render 'bookmark_button', {spot: @spot} %>
+    </p>
   </div>
 </div>

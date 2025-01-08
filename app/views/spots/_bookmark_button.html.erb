@@ -1,0 +1,7 @@
+<!-- userモデルに定義したbookmark?メソッドを使ってspotオブジェクトに対してcurrent_userがbookmarkしているか確認する。 -->
+<!-- bookmarkしていたらunbookmarkをパーシャルを呼び出し、bookmarkしていないければbookmarkパーシャルを呼び出す。 -->
+<% if current_user.bookmark?(spot) %>
+  <%= render 'spots/unbookmark', { spot: spot } %>
+<% else %>
+  <%= render 'spots/bookmark', { spot: spot} %>
+<% end %> 

@@ -1,0 +1,1 @@
+<%= link_to 'unbookmark', post_like_path(post_id: post.id, id: current_user.bookmarks.find_by(bookmark_id: bookmark.id)),method: :delete %>

@@ -5,17 +5,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   # enum gender: { gender_private: 0, male: 1, female: 2, others: 3 }
-end
 
-def bookmark(spot)
-  bookmark_spots << spot
-end
+  def bookmark(spot)
+    bookmarks << spot
+  end
 
-def unbookmark(spot)
-  bookmark_spots.destroy(spot)
-end
+  def unbookmark(spot)
+    bookmarks.destroy(spot)
+  end
 
-def bookmark?(spot)
-  bookmark_spots.include?(spot)
+  def bookmark?(spot)
+    bookmarks.include?(spot)
+  end
 end
-
