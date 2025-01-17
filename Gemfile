@@ -61,6 +61,9 @@ group :development, :test do
 
   # enumのi18n化。
   gem "enum_help"
+
+  # TailwindCSSでアイコンを実装するためのgem。
+  gem "heroicon"
 end
 
 group :development do
