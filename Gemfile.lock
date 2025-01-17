@@ -135,8 +135,6 @@ GEM
       activesupport (>= 6.1)
     google_places (2.0.0)
       httparty (>= 0.13.1)
-    heroicon (1.0.0)
-      rails (>= 5.2)
     httparty (0.22.0)
       csv
       mini_mime (>= 1.0.0)
@@ -406,7 +404,6 @@ DEPENDENCIES
   dotenv-rails
   enum_help
   google_places
-  heroicon
   jbuilder
   jsbundling-rails
   kamal
