@@ -3,5 +3,5 @@
 <% if current_user.bookmark?(spot) %>
   <%= render 'spots/unbookmark', { spot: spot } %>
 <% else %>
-  <%= render 'spots/bookmark', { spot: spot} %>
+  <%= render 'spots/to_bookmark', { spot: spot} %>
 <% end %> 

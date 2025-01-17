@@ -7,14 +7,14 @@ class User < ApplicationRecord
   # enum gender: { gender_private: 0, male: 1, female: 2, others: 3 }
 
   def bookmark(spot)
-    bookmarks << spot
+    bookmarks.create(spot: spot) unless bookmark?(spot)
   end
 
   def unbookmark(spot)
-    bookmarks.destroy(spot)
+    bookmarks.find_by(spot: spot)&.destroy
   end
 
   def bookmark?(spot)
-    bookmarks.include?(spot)
+    bookmarks.exists?(spot: spot)
   end
 end

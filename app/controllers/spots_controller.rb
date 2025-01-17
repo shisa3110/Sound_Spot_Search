@@ -21,7 +21,7 @@ class SpotsController < ApplicationController
   end
 
   def bookmarks
-    @spots = current_user.bookmarks
+    @bookmark_spots = current_user.bookmarks.order(created_at: :desc)
   end
 
 
