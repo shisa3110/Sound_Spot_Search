@@ -21,9 +21,8 @@ class SpotsController < ApplicationController
   end
 
   def bookmarks
-    @bookmark_spots = current_user.bookmarks.order(created_at: :desc)
+    @bookmark_spots = current_user.bookmarks.includes(:user).map(&:spot)
   end
-
 
   private
   def spot_params
