@@ -84,5 +84,5 @@ group :development, :production, :test do
   # Google Places APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
   gem "google_places"
   # アイコンの実装に使用するgem。
-  gem "font-awesome-sass"
+  # gem "font-awesome-sass"
 end
