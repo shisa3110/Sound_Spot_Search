@@ -62,6 +62,9 @@ group :development, :test do
   # enumのi18n化。
   gem "enum_help"
 
+  # アイコンの実装に使用するgem。
+  gem "font-awesome-sass"
+
 end
 
 group :development do
