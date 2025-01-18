@@ -62,9 +62,6 @@ group :development, :test do
   # enumのi18n化。
   gem "enum_help"
 
-  # アイコンの実装に使用するgem。
-  gem "font-awesome-sass"
-
 end
 
 group :development do
@@ -86,4 +83,6 @@ group :development, :production, :test do
   gem "devise"
   # Google Places APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
   gem "google_places"
+  # アイコンの実装に使用するgem。
+  gem "font-awesome-sass"
 end
