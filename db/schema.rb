@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_27_150154) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_28_151611) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -22,6 +22,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_150154) do
     t.index ["spot_id"], name: "index_bookmarks_on_spot_id"
     t.index ["user_id", "spot_id"], name: "index_bookmarks_on_user_id_and_spot_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "spot_tags", force: :cascade do |t|
+    t.bigint "spot_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id", "tag_id"], name: "index_spot_tags_on_spot_id_and_tag_id", unique: true
+    t.index ["spot_id"], name: "index_spot_tags_on_spot_id"
+    t.index ["tag_id"], name: "index_spot_tags_on_tag_id"
   end
 
   create_table "spots", force: :cascade do |t|
@@ -64,4 +74,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_27_150154) do
 
   add_foreign_key "bookmarks", "spots"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "spot_tags", "spots"
+  add_foreign_key "spot_tags", "tags"
 end
