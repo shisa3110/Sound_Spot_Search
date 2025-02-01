@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :spots
   has_many :bookmarks, dependent: :destroy
 
   # Include default devise modules. Others available are:
