@@ -1,4 +1,6 @@
 class SpotsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit]
+
   def map
     @spots = Spot.all
   end
@@ -29,10 +31,11 @@ class SpotsController < ApplicationController
   end
 
   def update
-    @spot = current_user.spots.find(params[:id])
+    @spot = Spot.find(params[:id])
     if @spot.update(spot_params)
       redirect_to spot_path(@spot)
     else
+      flash[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit
     end
   end
