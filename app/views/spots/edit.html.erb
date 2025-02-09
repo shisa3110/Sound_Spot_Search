@@ -1,14 +1,16 @@
-<div class="flex items-center justify-center h-screen bg-100 w-full">
-  <div class="w-full max-w-lg py-8 rounded-lg shadow-lg bg-base-200 text-center">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
     <h1>施設情報入力用</h1>
-    <%= form_for @spot do |f| %>
+    <%= form_with model: @spot, url: spot_path(@spot), method: :patch, local: true, data: { turbo: false } do |f| %>  
+      <p><%= spot_path(@spot) %></p> <!-- ここでURLが正しく表示されるか確認 -->
       <div class="form-control">
-        <%= f.label :facility_name, "施設名", class: "label" %>
+        <%= f.label :name, "施設名", class: "label" %>
         <%= f.text_field :name, class: "input input-bordered", required: true %>
       </div>
   
       <div class="form-control">
-        <%= f.label :post_code, "郵便番号", class: "label" %>
+        <%= f.label :postal_code, "郵便番号", class: "label" %>
         <%= f.text_field :postal_code, class: "input input-bordered", required: true %>
       </div>
   
@@ -43,7 +45,7 @@
       </div>
   
       <div class="form-control mt-6">
-        <%= f.submit "送信", class: "btn btn-primary" %>
+        <%= f.submit "更新", class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

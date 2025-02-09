@@ -1,5 +1,5 @@
 class SpotsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit]
+  before_action :authenticate_user!, only: [:edit, :update, :create, :new]
 
   def map
     @spots = Spot.all
@@ -36,12 +36,12 @@ class SpotsController < ApplicationController
       redirect_to spot_path(@spot)
     else
       flash[:alert] = "更新に失敗しました。入力内容を確認してください。"
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   private
   def spot_params
-    params.require(:spot).permit(:name, :post_code, :address, :phone_number, :web_site, :latitude, :longitude, :opening_hours)
+    params.require(:spot).permit(:name, :postal_code, :address, :phone_number, :web_site, :latitude, :longitude, :opening_hours)
   end
 end
