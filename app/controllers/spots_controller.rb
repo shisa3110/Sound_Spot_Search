@@ -43,7 +43,7 @@ class SpotsController < ApplicationController
   def destroy
     spot = Spot.find(params[:id])
     spot.destroy!
-    redirect_to spots_path, success: "削除に成功しました。"
+    redirect_to spots_map_path, success: "削除に成功しました。"
   end
 
   private
