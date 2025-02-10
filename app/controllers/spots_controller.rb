@@ -1,5 +1,5 @@
 class SpotsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :create, :new]
+  before_action :authenticate_user!, only: [:edit, :update, :create, :new, :destroy]
 
   def map
     @spots = Spot.all
@@ -38,6 +38,12 @@ class SpotsController < ApplicationController
       flash[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    spot = Spot.find(params[:id])
+    spot.destroy!
+    redirect_to spots_path, success: "削除に成功しました。"
   end
 
   private
