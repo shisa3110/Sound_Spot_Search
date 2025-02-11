@@ -7,39 +7,28 @@
         <div class="form-control">
           <%= f.label :name, "施設名", class: "label" %>
           <%= f.text_field :name, class: "input input-bordered", required: true %>
-        </div>
-      
-        <div class="form-control">
+
+          <%= f.label :category, "施設カテゴリ", class: "label" %>
+          <%= f.select :category, options_for_select(Spot.categories), {prompt: "選択してください"}, class: "category-select" %>
+
           <%= f.label :postal_code, "郵便番号", class: "label" %>
           <%= f.text_field :postal_code, class: "input input-bordered", required: true %>
-        </div>
       
-        <div class="form-control">
           <%= f.label :address, "住所", class: "label" %>
           <%= f.text_field :address, class: "input input-bordered", required: true %>
-        </div>
       
-        <div class="form-control">
           <%= f.label :phone_number, "電話番号", class: "label" %>
           <%= f.telephone_field :phone_number, class: "input input-bordered", required: true %>
-        </div>
       
-        <div class="form-control">
           <%= f.label :web_site, "Webサイト", class: "label" %>
           <%= f.url_field :web_site, class: "input input-bordered", required: true %>
-        </div>
       
-        <div class="form-control">
           <%= f.label :latitude, "緯度", class: "label" %>
           <%= f.number_field :latitude, class: "input input-bordered", step: 0.000001, required: true %>
-        </div>
       
-        <div class="form-control">
           <%= f.label :longitude, "経度", class: "label" %>
           <%= f.number_field :longitude, class: "input input-bordered", step: 0.000001, required: true %>
-        </div>
       
-        <div class="form-control">
           <%= f.label :opening_hours, "営業時間", class: "label" %>
           <%= f.text_field :opening_hours, class: "input input-bordered", required: true %>
         </div>
