@@ -11,9 +11,10 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(spot_params)
-    if @spot.save
-      redirect_to root_path
+    if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).to_s.split(',').uniq)
+      redirect_to spot_path(@spot), success: '施設情報を作成しました'
     else
+      flash.now[:danger] = '施設情報を作成できませんでした'
       render :new, status: :unprocessable_entity
     end
   end
@@ -32,8 +33,9 @@ class SpotsController < ApplicationController
 
   def update
     @spot = Spot.find(params[:id])
-    if @spot.update(spot_params)
-      redirect_to spot_path(@spot)
+    @spot.assign_attributes(spot_params)
+    if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).to_s.split(',').uniq)
+       redirect_to spot_path(@spot), success: '施設情報を作成しました'
     else
       flash[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit, status: :unprocessable_entity
@@ -41,8 +43,8 @@ class SpotsController < ApplicationController
   end
 
   def destroy
-    spot = Spot.find(params[:id])
-    spot.destroy!
+    @spot = Spot.find(params[:id])
+    @spot.destroy!
     redirect_to spots_map_path, success: "削除に成功しました。"
   end
 
