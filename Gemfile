@@ -61,10 +61,6 @@ group :development, :test do
 
   # enumのi18n化。
   gem "enum_help"
-
-  # 画像投稿のためのgem。
-  gem "carrierwave", "~> 3.0"
-
 end
 
 group :development do
