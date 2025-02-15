@@ -7,6 +7,12 @@
           <%= f.label :name, "施設名", class: "label" %>
           <%= f.text_field :name, class: "input input-bordered", required: true %>
 
+          <div class="mb-3">
+            <%= f.label :spot_image, "施設写真" %>
+            <%= f.file_field :spot_image, class: "form-control", accept: 'image/*' %>
+            <%= f.hidden_field :spot_image_cache %>
+          </div>
+
           <%= f.label :category, "施設カテゴリ", class: "label" %>
           <%= f.select :category, options_for_select(Spot.categories_i18n.invert), {} %>
 
