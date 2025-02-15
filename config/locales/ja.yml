@@ -8,6 +8,6 @@ ja:
         other: "その他"
     spot:
       category:
-        Studio: "スタジオ"
-        Karaoke: "カラオケ"
-        Public_facilities: "公共施設"
+        studio: "スタジオ"
+        karaoke: "カラオケ"
+        public_facilities: "公共施設"
