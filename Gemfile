@@ -86,6 +86,6 @@ group :development, :production, :test do
   gem "devise"
   # Google Places APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
   gem "google_places"
-  # アイコンの実装に使用するgem。
-  # gem "font-awesome-sass"
+  # 画像投稿のためのgem。
+  gem "carrierwave", "~> 3.0"
 end
