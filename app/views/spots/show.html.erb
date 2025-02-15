@@ -35,5 +35,9 @@
       営業時間</br>
       <%= simple_format(@spot.opening_hours) %>
     </p>
+    <p class="py-1">
+      備考タグ</br>
+      <%= j (@spot.tag_names) %>
+    </p>
   </div>
 </div>

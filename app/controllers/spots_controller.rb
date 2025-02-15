@@ -11,7 +11,7 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(spot_params)
-    if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).to_s.split(',').uniq)
+    if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).split(',').uniq)
       redirect_to spot_path(@spot), success: '施設情報を作成しました'
     else
       flash.now[:danger] = '施設情報を作成できませんでした'
