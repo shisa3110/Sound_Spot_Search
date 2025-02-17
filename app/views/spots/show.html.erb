@@ -16,7 +16,9 @@
     <h1 class="text-3xl font-bold">
       <%= j @spot.name %>
     </h1>
-    <%= image_tag @spot.spot_image_url, class: "card-img-top", width: "300", height:"200" %>
+    <div class="flex justify-center">
+      <%= image_tag @spot.spot_image_url, class: "card-img-top", width: "200", height:"100" %>
+    </div>
     <p class="py-1">
       <%= j @spot.category %>
     </p>
