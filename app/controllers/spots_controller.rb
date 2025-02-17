@@ -9,6 +9,10 @@ class SpotsController < ApplicationController
     @spot = Spot.new
   end
 
+  def index
+    @spots = Spot.all
+  end
+
   def create
     @spot = Spot.new(spot_params)
     if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).split(',').uniq)
