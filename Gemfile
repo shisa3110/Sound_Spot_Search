@@ -61,6 +61,9 @@ group :development, :test do
 
   # enumのi18n化。
   gem "enum_help"
+
+  # 検索のためのgem。
+  gem "ransack"
 end
 
 group :development do
