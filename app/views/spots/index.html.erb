@@ -5,6 +5,12 @@
   <%= search_form_for @q do |f| %>
     <%= f.label :name, "施設名から検索" %>
     <%= f.search_field :name_cont %>
+
+    <%= f.label :category, "カテゴリ" %>
+  　<%= f.radio_button :category_eq, '', {:checked => true} %>指定なし
+    <%= f.radio_button :category_eq, 0 %>スタジオ
+    <%= f.radio_button :category_eq, 1 %>カラオケ
+    <%= f.radio_button :category_eq, 2 %>公共施設
     <%= f.submit "検索" %>
   <% end %>
 </div>
