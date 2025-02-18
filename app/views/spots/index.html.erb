@@ -1,6 +1,9 @@
+<h1 class="text-xl font-bold text-center py-6">
+  一覧から探す
+</h1>
 <div class="row">
   <div class="col-12">
-    <div class="row">
+   <div class="flex flex-row flex-wrap px-5 py-10">
     <% if @spots.present? %>
       <% @spots.each do |spot| %>
         <div class="card bg-base-100 w-96 shadow-xl pt-5" >
@@ -8,7 +11,7 @@
             <%= spot.name %>
           </h1>
           <figure class="px-20 pt-20">
-            <%= image_tag spot.spot_image_url, class: "rounded-xl" %>
+            <%= image_tag spot.spot_image_url,  class: "rounded-xl " %>
           </figure>
           <div class="card-body items-center text-center">
           <p class="py-1">
