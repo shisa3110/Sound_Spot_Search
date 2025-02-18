@@ -10,7 +10,8 @@ class SpotsController < ApplicationController
   end
 
   def index
-    @spots = Spot.all
+    @q = Spot.ransack(params[:q])
+    @spots = @q.result(distinct: true)
   end
 
   def create

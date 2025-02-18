@@ -21,4 +21,9 @@ class Spot < ApplicationRecord
   def tag_names
     tags.map(&:name).join(',')
   end
+
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["address", "category", "created_at", "id", "latitude", "longitude", "name", "opening_hours", "phone_number", "place_id", "postal_code", "room_charge", "spot_image", "updated_at", "web_site"]
+  end
 end

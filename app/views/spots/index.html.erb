@@ -1,6 +1,13 @@
 <h1 class="text-xl font-bold text-center py-6">
   一覧から探す
 </h1>
+<div class="col-lg-10 offset-lg-1">
+  <%= search_form_for @q do |f| %>
+    <%= f.label :name, "施設名から検索" %>
+    <%= f.search_field :name_cont %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
 <div class="row">
   <div class="col-12">
    <div class="flex flex-row flex-wrap px-5 py-10">
@@ -27,7 +34,7 @@
         </div>
       <% end %>
     <% else %>
-      <div class="mb-3">掲示板がありません</div>
+      <div class="mb-3">施設情報がありません</div>
     <% end %>
   </div>
 </div>
