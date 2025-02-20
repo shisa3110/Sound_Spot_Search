@@ -25,7 +25,7 @@ export default class extends Controller {
 
     data.forEach(item => {
       const li = document.createElement('li');
-      li.textContent = item.title;  
+      li.textContent = item.name;  
       li.addEventListener('click', () => {
         this.selectResult(item);
       });

@@ -3,19 +3,21 @@
 </h1>
 <div class="col-lg-10 offset-lg-1">
   <%= search_form_for @q do |f| %>
-    <%= f.label :name, "施設名から検索" %>
-    <%= f.search_field :name_cont %>
+    <div class="search-bar" data-controller="autocomplete" data-autocomplete-url-value="<%= spots_path %>">
+     <%= f.label :name, "施設名から検索" %>
+     <%= f.search_field :name_cont, data: { action: "input->autocomplete#search" }%>
+     <ul data-autocomplete-target="results" class="autocomplete-results"></ul>
+    </div>
+     <%= f.label :address, "住所から検索" %>
+     <%= f.search_field :address_cont %>
 
-    <%= f.label :address, "住所から検索" %>
-    <%= f.search_field :address_cont %>
-
-    <%= f.label :category, "カテゴリ" %>
-  　<%= f.radio_button :category_eq, '', {:checked => true} %>指定なし
-    <%= f.radio_button :category_eq, 0 %>スタジオ
-    <%= f.radio_button :category_eq, 1 %>カラオケ
-    <%= f.radio_button :category_eq, 2 %>公共施設
-    <%= f.submit "検索" %>
-  <% end %>
+   <%= f.label :category, "カテゴリ" %>
+   <%= f.radio_button :category_eq, '', :checked => true %>指定なし
+   <%= f.radio_button :category_eq, 0 %>スタジオ
+   <%= f.radio_button :category_eq, 1 %>カラオケ
+   <%= f.radio_button :category_eq, 2 %>公共施設
+   <%= f.submit "検索" %>
+ <% end %>
 </div>
 <div class="row">
   <div class="col-12">
