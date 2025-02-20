@@ -53,6 +53,14 @@ class SpotsController < ApplicationController
     redirect_to spots_map_path, success: "削除に成功しました。"
   end
 
+  def autocomplete
+    @q = Spot.ransack(name_cont: params[:q]) 
+    @spots = @q.result(distinct: true).limit(10) 
+  
+    render json: @spots.as_json(only: [:name])
+  end
+  
+
   private
   def spot_params
     params.require(:spot).permit(:name, :spot_image, :category, :postal_code, :address, :phone_number, :web_site, :latitude, :longitude, :opening_hours)

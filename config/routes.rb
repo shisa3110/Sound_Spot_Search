@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :bookmarks, only: %i[create destroy]
     collection do
       get :bookmarks
+      get :autocomplete
     end
   end
 
