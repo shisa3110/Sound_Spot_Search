@@ -1,12 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="autocomplete"
-export default class extends Controller {
-  connect() {
-  }
-}import { Controller } from "@hotwired/stimulus"
-
-// Connects to data-controller="autocomplete"
 //Stimulusでは、クラス（ここではControllerを継承したクラス）を作ることで、ページ上の要素を動的に操作できます。
 export default class extends Controller {
   // これは Stimulusの「Value API」 を使っていて、urlValue というプロパティを使えるようにしています。
