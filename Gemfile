@@ -64,6 +64,9 @@ group :development, :test do
 
   # 検索のためのgem。
   gem "ransack"
+
+  # ページネーションのためのgem。
+  gem "kaminari"
 end
 
 group :development do
