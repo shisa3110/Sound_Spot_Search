@@ -3,10 +3,10 @@ class Spot < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :spot_tags
   has_many :tags, through: :spot_tags
-  
+
   mount_uploader :spot_image, SpotImageUploader
 
-  enum :category, { studio:0, karaoke:1, public_facilities:2 }
+  enum :category, { studio: 0, karaoke: 1, public_facilities: 2 }
 
   def save_with_tags(tag_names:)
     ActiveRecord::Base.transaction do
@@ -19,11 +19,11 @@ class Spot < ApplicationRecord
   end
 
   def tag_names
-    tags.map(&:name).join(',')
+    tags.map(&:name).join(",")
   end
 
 
   def self.ransackable_attributes(auth_object = nil)
-    ["address", "category", "created_at", "id", "latitude", "longitude", "name", "opening_hours", "phone_number", "place_id", "postal_code", "room_charge", "spot_image", "updated_at", "web_site"]
+    [ "address", "category", "created_at", "id", "latitude", "longitude", "name", "opening_hours", "phone_number", "place_id", "postal_code", "room_charge", "spot_image", "updated_at", "web_site" ]
   end
 end

@@ -74,7 +74,7 @@ group :development do
   gem "web-console"
   # GitHubアクションのCI導入
   gem "rspec-rails"
-  gem 'rubocop', require: false
+  gem "rubocop", require: false
 end
 
 group :test do

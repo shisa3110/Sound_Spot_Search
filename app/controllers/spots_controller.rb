@@ -1,5 +1,5 @@
 class SpotsController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update, :create, :new, :destroy]
+  before_action :authenticate_user!, only: [ :edit, :update, :create, :new, :destroy ]
 
   def map
     @spots = Spot.all
@@ -16,10 +16,10 @@ class SpotsController < ApplicationController
 
   def create
     @spot = Spot.new(spot_params)
-    if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).split(',').uniq)
-      redirect_to spot_path(@spot), success: '施設情報を作成しました'
+    if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).split(",").uniq)
+      redirect_to spot_path(@spot), success: "施設情報を作成しました"
     else
-      flash.now[:danger] = '施設情報を作成できませんでした'
+      flash.now[:danger] = "施設情報を作成できませんでした"
       render :new, status: :unprocessable_entity
     end
   end
@@ -39,8 +39,8 @@ class SpotsController < ApplicationController
   def update
     @spot = Spot.find(params[:id])
     @spot.assign_attributes(spot_params)
-    if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).to_s.split(',').uniq)
-       redirect_to spot_path(@spot), success: '施設情報を作成しました'
+    if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).to_s.split(",").uniq)
+       redirect_to spot_path(@spot), success: "施設情報を作成しました"
     else
       flash[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit, status: :unprocessable_entity
@@ -54,12 +54,11 @@ class SpotsController < ApplicationController
   end
 
   def autocomplete
-    @q = Spot.ransack(name_cont: params[:q]) 
-    @spots = @q.result(distinct: true).limit(10) 
-  
-    render json: @spots.as_json(only: [:name])
+    @q = Spot.ransack(name_cont: params[:q])
+    @spots = @q.result(distinct: true).limit(10)
+
+    render json: @spots.as_json(only: [ :name ])
   end
-  
 
   private
   def spot_params
