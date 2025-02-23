@@ -60,7 +60,7 @@ test:
   <<: *default
   database: myapp_test
   username: postgres
-  password: your_password_here
+  password: password
   host: localhost
   pool: 5
 
