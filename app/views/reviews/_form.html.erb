@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-lg-8 offset-lg-2">
+    <h1>口コミ投稿</h1>
+    <%= form_with model: review, url: spot_reviews_path(@spot), method: :post, local: true, data: { turbo: false } do |f| %>
+      <div class="mb-4">
+        <%= f.label :body, "口コミ本文", class: "label" %>
+        <%= f.text_area :body, class: "input input-bordered", required: true %>
+      </div>
+      <div class="form-control mt-6">
+        <%= f.submit "送信", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
