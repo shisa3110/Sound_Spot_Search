@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
   def create
     @spot = Spot.find(params[:spot_id]) 
     @review = @spot.reviews.build(review_params) 
@@ -8,7 +9,13 @@ class ReviewsController < ApplicationController
       redirect_to spot_path(@review.spot), danger: "口コミを投稿できませんでした"
     end
   end
-  
+
+  def destroy
+    @review = current_user.reviews.find(params[:id])
+    @review.destroy!
+    redirect_to spot_path(@review.spot), notice: '口コミが削除されました'
+  end
+
   private
 
   def review_params

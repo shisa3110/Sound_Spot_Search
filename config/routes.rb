@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :spots do
     # ブックマークつけたり外したりするためのルーティング
     resources :bookmarks, only: %i[create destroy]
-    resources :reviews, only: %i[create edit destroy]
+    resources :reviews, only: %i[create destroy]
     collection do
       get :bookmarks
       get :autocomplete
