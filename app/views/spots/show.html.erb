@@ -44,5 +44,9 @@
     </p>
   </div>
 </div>
-<%= render @review %>
-<%= render 'reviews/form', review: @review, spot: @spot %>
+<div class="flex items-center justify-center h-screen bg-100 w-full">
+  <%= render 'reviews/review' %>
+  <% if user_signed_in? %>
+    <%= render 'reviews/form', review: @review, spot: @spot %>
+  <% end %>
+</div>

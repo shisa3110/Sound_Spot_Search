@@ -1,8 +1,8 @@
 <div class="card bg-base-100 w-96 shadow-xl">
   <div class="card-body">
-    <div class="card-actions justify-end">
-      <h3 class="small"><%= @review.user %></h3>
-      <p><%= @review.body %></p>
-    </div>
+    <% @reviews.each do |review| %>
+      <h3 class="small"><%= @review.user&.name || "匿名ユーザー" %></h3>
+      <p><%= review.body %></p>
+    <% end %>
   </div>
 </div>
