@@ -1,0 +1,8 @@
+<div class="card bg-base-100 w-96 shadow-xl">
+  <div class="card-body">
+    <% @reviews.each do |review| %>
+      <h3 class="small"><%= instrument.user&.name || "匿名ユーザー" %></h3>
+      <p><%= instrument.comment %></p>
+    <% end %>
+  </div>
+</div>
