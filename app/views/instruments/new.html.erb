@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <h1>施設情報入力用</h1>
+      <%= form_with model: @instrument, local: true, data: { turbo: false } do |f| %>
+        <div class="form-control">
+          <%= f.label :title, "題名", class: "label" %>
+          <%= f.text_field :title, class: "input input-bordered", required: true %>
+
+          <div class="mb-3">
+            <%= f.label :image, "my楽器写真" %>
+            <%= f.file_field :image, class: "form-control", accept: 'image/*' %>
+            <%= f.hidden_field :image_cache %>
+          </div>
+
+          <!-- f.label :kind, "楽器の種類", class: "label"
+          f.select :kind, options_for_select(Instrument.kinds_i18n.invert), {} 
+          -->
+
+          <%= f.label :comment, "コメント", class: "label" %>
+          <%= f.text_field :comment, class: "input input-bordered", required: true %>
+          
+          <div class="form-control mt-6">
+            <%= f.submit "送信", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
