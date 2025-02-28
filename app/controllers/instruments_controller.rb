@@ -17,6 +17,20 @@ class InstrumentsController < ApplicationController
     end
   end
 
+  def edit
+    @instrument = current_user.instruments.find(params[:id])
+  end
+
+  def update
+    @instrument = current_user.instruments.find(params[:id])
+    if @instrument.update(instrument_params)
+      redirect_to instruments_path, success: "投稿の編集に成功しました"
+    else
+      flash.now[:danger] = "編集の保存に失敗しました"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
   def instrument_params
     params.require(:instrument).permit(:title, :comment, :instrument_image, :kind)
