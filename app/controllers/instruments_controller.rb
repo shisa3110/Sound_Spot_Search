@@ -1,6 +1,6 @@
 class InstrumentsController < ApplicationController
   def index
-    @Instruments = Instrument.includes(:user)
+    @instruments = Instrument.includes(:user)
   end
 
   def new
@@ -19,7 +19,7 @@ class InstrumentsController < ApplicationController
 
   private
   def instrument_params
-    params.require(:instrument).permit(:title, :comment, :image, :kind)
+    params.require(:instrument).permit(:title, :comment, :instrument_image, :kind)
   end
 
 end
