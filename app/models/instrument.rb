@@ -3,6 +3,7 @@ class Instrument < ApplicationRecord
   validates :comment, presence: true, length: { maximum: 65_535 }
   
   belongs_to :user
+  has_many :likes, dependent: :destroy
 
   mount_uploader :instrument_image, InstrumentImageUploader
 
