@@ -31,6 +31,12 @@ class InstrumentsController < ApplicationController
     end
   end
 
+  def destroy
+    @instrument = Instrument.find(params[:id])
+    @instrument.destroy!
+    redirect_to instruments_path, success: "削除に成功しました。"
+  end
+
   private
   def instrument_params
     params.require(:instrument).permit(:title, :comment, :instrument_image, :kind)
