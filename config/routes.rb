@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resource :users, only: %i[show] do
     collection do
       get "profile", to: "users#profile"
-      get "profile/my_review", to: "users#my_review"
       get "profile/my_reviews", to: "users#my_reviews"
       get "profile/my_instruments", to: "users#my_instruments"
     end

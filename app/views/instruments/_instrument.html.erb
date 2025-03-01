@@ -2,10 +2,10 @@
     <div class="card bg-base-100 w-96 shadow-xl pt-5" >
     <p class="py-1 text-right">
       <% if user_signed_in? %>
-        <%= render 'like_button', instrument: instrument %>
+      <%= render 'instruments/like_button', instrument: instrument %>
         <% if current_user && current_user.own?(instrument) %>
-          <%= render 'edit_button', instrument: instrument %>
-          <%= render 'destroy_button', instrument: instrument %>
+          <%= render 'instruments/edit_button', instrument: instrument %>
+          <%= render 'instruments/destroy_button', instrument: instrument %>
         <% end %>
       <% end %>
     </p>

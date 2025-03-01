@@ -14,4 +14,16 @@
       <%= @user.email %></br>
     </p>
   </div>
+  <button class="btn">
+  <%= link_to 'ブックマークした施設を見る', bookmarks_spots_path %>
+</button>
+<button class="btn">
+  <%= link_to '投稿した口コミを見る', profile_my_reviews_users_path %>
+</button>
+<button class="btn">
+  <%= link_to 'いいねした楽器の写真を見る', likes_instruments_path %>
+</button>
+<button class="btn">
+  <%= link_to '投稿した楽器の写真を見る', profile_my_instruments_users_path %>
+</button>
 </div>
