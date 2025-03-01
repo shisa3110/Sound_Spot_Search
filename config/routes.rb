@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :bookmarks, only: %i[create destroy]
 
-  resources :instruments, only: %i[index new create edit update destroy]
+  resources :instruments, only: %i[index new create edit update destroy] do
     resources :likes, only: %i[create destroy]
     collection do
       get :likes
