@@ -25,6 +25,18 @@ class User < ApplicationRecord
     bookmarks.exists?(spot: spot)
   end
 
+  def like(instrument)
+    likes.create(instrument: instrument) unless like?(instrument)
+  end
+
+  def unlike(instrument)
+    likes.find_by(instrument: instrument)&.destroy
+  end
+
+  def like?(instrument)
+    likes.exists?(instrument: instrument)
+  end
+
   def own?(object)
     id == object&.user_id
   end
