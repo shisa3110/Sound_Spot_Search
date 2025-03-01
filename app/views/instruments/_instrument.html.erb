@@ -1,11 +1,14 @@
   <div class="card-body">
     <div class="card bg-base-100 w-96 shadow-xl pt-5" >
-    <% if current_user.own?(instrument) %>
-      <p class="py-1 text-right">
-        <%= render 'edit_button', instrument: instrument %>
-        <%= render 'destroy_button', instrument: instrument %>
-      </p>
-    <% end %>
+    <p class="py-1 text-right">
+      <% if user_signed_in? %>
+        <%= render 'like_button', instrument: instrument %>
+        <% if current_user && current_user.own?(instrument) %>
+          <%= render 'edit_button', instrument: instrument %>
+          <%= render 'destroy_button', instrument: instrument %>
+        <% end %>
+      <% end %>
+    </p>
       <h1 class="text-3xl font-bold text-center">
         <%= instrument.title %>
       </h1>
