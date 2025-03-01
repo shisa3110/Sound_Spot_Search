@@ -1,0 +1,3 @@
+<%= link_to like_path(current_user.likes.find_by(instrument_id: instrument.id)), id: "unbookmark-button-for-instrument-#{instrument.id}", data: { turbo_method: :delete } do %>
+  <i class="fa-solid fa-heart"></i>
+<% end %>

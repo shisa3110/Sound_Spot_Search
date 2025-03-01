@@ -37,6 +37,10 @@ class InstrumentsController < ApplicationController
     redirect_to instruments_path, success: "削除に成功しました。"
   end
 
+  def likes
+    @like_instruments = current_user.likes.includes(:user).map(&:instrument)
+  end
+
   private
   def instrument_params
     params.require(:instrument).permit(:title, :comment, :instrument_image, :kind)
