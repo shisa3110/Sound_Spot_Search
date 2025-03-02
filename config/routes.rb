@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: "users/registrations"
-}
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
   resource :users, only: %i[show] do
     collection do
       get "profile", to: "users#profile"

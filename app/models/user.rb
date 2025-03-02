@@ -9,7 +9,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[google_oauth2]
 
   enum :gender, { gender_private: 0, male: 1, female: 2, others: 3 }
@@ -70,8 +70,8 @@ class User < ApplicationRecord
       { user:, google: } 
     end
 
-    def with_google_data(auth, )
-      user = User.where(id: .user_id).first
+    def with_google_data(auth, authentication)
+      user = User.where(id: authentication.user_id).first
       if user.blank?
         user = User.create(
           name: auth.info.name,
@@ -80,7 +80,7 @@ class User < ApplicationRecord
           password: Devise.friendly_token(10)
         )
       end
-      { user: }
+      { user: user }
     end
 
     def find_oauth(auth)
