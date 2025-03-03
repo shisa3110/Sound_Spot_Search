@@ -67,9 +67,6 @@ group :development, :test do
 
   # ページネーションのためのgem。
   gem "kaminari"
-
-  gem "omniauth-google-oauth2"
-  gem "omniauth-rails_csrf_protection"
 end
 
 group :development do
@@ -93,4 +90,6 @@ group :development, :production, :test do
   gem "google_places"
   # 画像投稿のためのgem。
   gem "carrierwave", "~> 3.0"
+  gem "omniauth-google-oauth2"
+  gem "omniauth-rails_csrf_protection"
 end
