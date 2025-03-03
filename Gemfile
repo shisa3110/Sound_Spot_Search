@@ -68,7 +68,6 @@ group :development, :test do
   # ページネーションのためのgem。
   gem "kaminari"
 
-  gem "omniauth"
   gem "omniauth-google-oauth2"
   gem "omniauth-rails_csrf_protection"
 end
