@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_before_action :verify_authenticity_token, only: [:google_oauth2]
+
   def google_oauth2
-    callback_for(:google)
+    callback_for("google_oauth2")
   end
 
   def callback_for(provider)
@@ -15,7 +17,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # capitalizeは文字列の先頭を大文字に、それ以外は小文字に変更して返すメソッド
       set_flash_message(:notice, :success, kind: provider.to_s.capitalize) if is_navigational_format?
     else
-      @sns = info[:sns]
+      @google = info[:google]
       render template: "devise/registrations/new"
     end
   end

@@ -58,7 +58,6 @@ class User < ApplicationRecord
         user = User.create(
           name: auth.info.name,
           email: auth.info.email,
-          profile_image: auth.info.image,
           password: Devise.friendly_token(10)
         )
         google = Authentication.create(
@@ -76,23 +75,22 @@ class User < ApplicationRecord
         user = User.create(
           name: auth.info.name,
           email: auth.info.email,
-          profile_image: auth.info.image,
           password: Devise.friendly_token(10)
         )
       end
-      { user: user }
+      { user: }
     end
 
     def find_oauth(auth)
       uid = auth.uid
       provider = auth.provider
-      snscredential = SnsCredential.where(uid:, provider:).first
+      authentication = Authentication.where(uid:, provider:).first
       if authentication.present?
         user = with_google_data(auth, authentication)[:user]
-        sns = authentication
+        google = authentication
       else
         user = without_google_data(auth)[:user]
-        sns = without_google_data(auth)[:google]
+        google = without_google_data(auth)[:google]
       end
       { user:, google: }
     end
