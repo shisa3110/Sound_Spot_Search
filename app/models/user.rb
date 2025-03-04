@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :boards, dependent: :destroy
   has_many :instruments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  has_many :authentication, dependent: :destroy
+  has_many :authentications, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -87,10 +87,10 @@ class User < ApplicationRecord
       authentication = Authentication.where(uid:, provider:).first
       if authentication.present?
         user = with_google_data(auth, authentication)[:user]
-        google = authentication
+        sns = authentication
       else
         user = without_google_data(auth)[:user]
-        google = without_google_data(auth)[:google]
+        sns = without_google_data(auth)[:google]
       end
       { user:, google: }
     end

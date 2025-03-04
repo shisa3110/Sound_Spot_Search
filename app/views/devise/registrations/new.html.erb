@@ -49,10 +49,8 @@
         </div>
 
         <div>
-        <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } do %>
+        <%= link_to 'Signin with Google', user_google_oauth2_omniauth_authorize_path, method: :post %>
           <i class="fa-brands fa-google"></i>
-          Googleアカウントでサインインする
-        <% end %>
         </div>
       
         <div class="text-center mt-4">
