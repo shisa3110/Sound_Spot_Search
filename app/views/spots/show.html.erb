@@ -9,6 +9,7 @@
     <% if user_signed_in? %>
       <p class="py-1 text-right">
         <%= render 'bookmark_button', {spot: @spot} %>
+        <%= render 'share_button', {spot: @spot} %>
         <%= render 'edit_button', {spot: @spot} %>
         <%= render 'destroy_button', {spot: @spot} %>
       </p>
