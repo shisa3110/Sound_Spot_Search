@@ -67,6 +67,8 @@ group :development, :test do
 
   # ページネーションのためのgem。
   gem "kaminari"
+
+  gem "meta-tags"
 end
 
 group :development do
