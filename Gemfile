@@ -68,7 +68,6 @@ group :development, :test do
   # ページネーションのためのgem。
   gem "kaminari"
 
-  gem "meta-tags"
 end
 
 group :development do
@@ -94,4 +93,5 @@ group :development, :production, :test do
   gem "carrierwave", "~> 3.0"
   gem "omniauth-google-oauth2"
   gem "omniauth-rails_csrf_protection"
+  gem "meta-tags"
 end
