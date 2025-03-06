@@ -19,7 +19,7 @@ module ApplicationHelper
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@ツイッターのアカウント名',
+        site: '@ss_runteq55b',
       }
     }
   end

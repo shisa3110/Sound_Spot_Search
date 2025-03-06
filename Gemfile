@@ -68,6 +68,8 @@ group :development, :test do
   # ページネーションのためのgem。
   gem "kaminari"
 
+  gem "mini_magick"
+
 end
 
 group :development do
