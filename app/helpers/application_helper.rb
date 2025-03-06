@@ -17,7 +17,7 @@ module ApplicationHelper
         image: image_url('ogp.png'),
         locale: 'ja_JP',
       },
-      x: {
+      twitter: {
         card: 'summary_large_image',
         site: '@ss_runteq55b',
         image: image_url('ogp.png')
