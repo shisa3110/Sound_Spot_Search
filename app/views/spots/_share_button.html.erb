@@ -1,4 +1,5 @@
-<%= link_to "https://twitter.com/share?url=#{spot_url(@spot)}&text=#{CGI.escape('楽器の練習場所をシェア♪')}&hashtags=Sound_Spot_Search", 
-target: "_blank", rel: "noopener noreferrer", title: "Xでシェアする" do %>
-    <i class="fa-brands fa-x-twitter "></i>
+<% prepare_meta_tags @spot %> 
+<% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(spot_url(@spot))}" %>
+<%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
+  <i class="fa-brands fa-x-twitter"></i>
 <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "images/ogp", to: "images#ogp", as: "images_ogp"
   devise_for :users, controllers: {
     registrations: "users/registrations",
     omniauth_callbacks: "users/omniauth_callbacks"

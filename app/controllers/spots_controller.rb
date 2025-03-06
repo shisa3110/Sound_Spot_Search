@@ -1,5 +1,6 @@
 class SpotsController < ApplicationController
   before_action :authenticate_user!, only: [ :edit, :update, :create, :new, :destroy ]
+  helper_method :prepare_meta_tags
 
   def map
     @spots = Spot.all
@@ -28,6 +29,7 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @review = Review.new
     @reviews = @spot.reviews.includes(:user).order(created_at: :desc)
+    prepare_meta_tags(@post)
   end
 
   def bookmarks
@@ -65,5 +67,23 @@ class SpotsController < ApplicationController
   private
   def spot_params
     params.require(:spot).permit(:name, :spot_image, :category, :postal_code, :address, :phone_number, :web_site, :latitude, :longitude, :opening_hours)
+  end
+
+  def prepare_meta_tags(spot)
+        image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(Spot.name)}"
+        set_meta_tags og: {
+                        site_name: 'Sound Spot Search',
+                        title: Spot.name,
+                        description: '楽器の練習等大きな音を鳴らすことのできる場所を地図や一覧から検索するサービスです。',
+                        type: 'website',
+                        url: request.original_url,
+                        image: images_ogp_url('ogp.png'),
+                        locale: 'ja-JP'
+                      },
+                      twitter: {
+                        card: 'summary_large_image',
+                        site: '@https://x.com/ss_runteq55b',
+                        image: images_ogp_url('ogp.png')
+                      }
   end
 end
