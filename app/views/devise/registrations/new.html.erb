@@ -55,7 +55,7 @@
     <% end %>
     <div>
     <div>
-    <%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, data: { turbo: false } %>
+    <%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
       <i class="fa-brands fa-google"></i>
     </div>
   </div>
