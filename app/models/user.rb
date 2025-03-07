@@ -43,56 +43,14 @@ class User < ApplicationRecord
     id == object&.user_id
   end
 
-
-  class << self
-    def without_google_data(auth)
-      user = User.where(email: auth.info.email).first
-
-      if user.present?
-        google = Authentication.create(
-          uid: auth.uid,
-          provider: auth.provider,
-          user_id: user.id
-        )
-      else
-        user = User.create(
-          name: auth.info.name,
-          email: auth.info.email,
-          password: Devise.friendly_token(10)
-        )
-        google = Authentication.create(
-          user_id: user.id,
-          uid: auth.uid,
-          provider: auth.provider
-        )
-      end
-      { user:, google: } 
-    end
-
-    def with_google_data(auth, authentication)
-      user = User.where(id: authentication.user_id).first
-      if user.blank?
-        user = User.create(
-          name: auth.info.name,
-          email: auth.info.email,
-          password: Devise.friendly_token(10)
-        )
-      end
-      { user: }
-    end
-
-    def find_oauth(auth)
-      uid = auth.uid
-      provider = auth.provider
-      authentication = Authentication.where(uid:, provider:).first
-      if authentication.present?
-        user = with_google_data(auth, authentication)[:user]
-        sns = authentication
-      else
-        user = without_google_data(auth)[:user]
-        sns = without_google_data(auth)[:google]
-      end
-      { user:, google: }
-    end
+  def self.from_omniauth(auth)
+    user = find_by(email: auth.info.email) ||
+           where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+            user.name = auth.info.name
+            user.email = auth.info.email
+            user.password = Devise.friendly_token(10)
+            user.gender = 0
+           end
+    user
   end
 end
