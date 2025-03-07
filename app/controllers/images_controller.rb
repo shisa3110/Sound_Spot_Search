@@ -1,6 +1,4 @@
-class ImagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:ogp]
-  
+class ImagesController < ApplicationController  
   def ogp
     text = ogp_params[:text]
     image = OgpCreator.build(text).tempfile.open.read
