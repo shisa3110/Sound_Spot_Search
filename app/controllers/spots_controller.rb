@@ -72,7 +72,7 @@ class SpotsController < ApplicationController
   def prepare_meta_tags(spot)
         image_url = "#{request.base_url}/images/ogp.png?text=#{CGI.escape(spot.name)}"
         set_meta_tags og: {
-                        site_name: 'Sound Spot Search',
+                        site_name: 'SoundSpotSearch',
                         title: spot.name,
                         description: '楽器の練習等大きな音を鳴らすことのできる場所を地図や一覧から検索するサービスです。',
                         type: 'website',
@@ -82,7 +82,7 @@ class SpotsController < ApplicationController
                       },
                       twitter: {
                         card: 'summary_large_image',
-                        site: '@ss_runteq55b',
+                        site: 'https://x.com/ss_runteq55b',
                         image: image_url
                       }
   end
