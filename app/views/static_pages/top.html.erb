@@ -1,16 +1,52 @@
 <div class="hero bg-base-100 min-h-screen">
-  <div class="hero-content text-center">
-    <div class="max-w-max font-bold">
-      <h1 class="text-5xl font-title my-10">Sound Spot Search</h1>
-      <%= image_tag 'top.png', class: "max-w-2xl rounded-lg" %>
+  <div class="hero-content text-center flex flex-col items-center">
+    <div class="max-w-max font-bold flex flex-col items-center">
+      <%= image_tag 'top.png', class: "max-w-2xl rounded-lg pt-10" %>
       <p class="py-6">
+      Sound Spot Searchは、<br>
       楽器や歌を楽しむ人が「音を鳴らすことのできる場所」を探すサービスです。<br>
       カラオケ、スタジオ、文化会館等の公共施設を検索し<br>
       気兼ねなく音楽を練習、楽しむ施設を見つけることができます。
       </p>
-      <button class="btn btn-primary font-title">
+      <div class="flex flex-wrap justify-center gap-6">
+      <button class="btn btn-primary">
         <%= link_to '地図から探す', spots_map_path %>
       </button>
+      <button class="btn btn-primary">
+        <%= link_to '一覧検索から探す', spots_path %>
+      </button>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6">
+      <div class="card w-80 bg-base-200 mt-6 card-xs shadow-sm">
+        <div class="card-body  flex flex-col items-center">
+          <h1>地図検索機能</h1>
+          <%= image_tag 'top_map.png', class: "w-40 h-35" %>
+          <p>お住まいの地域、外出先でも<br>
+             地図からお手軽に音楽の練習場所を探すことができます。</p>
+        </div>
+      </div>
+      <div class="card w-80 bg-base-200 mt-6 card-xs shadow-sm">
+        <div class="card-body  flex flex-col items-center">
+          <h1>一覧検索機能</h1>
+          <%= image_tag 'top_map.png', class: "w-40 h-35" %>
+          <p>住所や施設名など詳しい条件で<br>
+          絞り込み、一覧から練習場所を<br>
+          探すことができます。</p>
+        </div>
+      </div>
+      <div class="card w-80 bg-base-200 mt-6 card-xs shadow-sm">
+        <div class="card-body  flex flex-col items-center">
+          <h1>my楽器写真投稿</h1>
+          <%= image_tag 'top_map.png', class: "w-40 h-35" %>
+          <p>写真とコメントを投稿して<br>
+          ご自身の楽器を他ユーザーへ<br>
+          自慢することができます。<br>
+          他ユーザーの投稿にもいいね！を
+          付けることができます。<br>
+          ※要ユーザー登録</p>
+        </div>
+      </div>
+      </div>
     </div>
   </div>
 </div>
