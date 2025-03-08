@@ -8,13 +8,19 @@
         <%= link_to "ユーザー登録", new_user_registration_path %>
       </li>
       <li>
-      <%= link_to 'ログイン', new_user_session_path %>
+        <%= link_to 'ログイン', new_user_session_path %>
       </li>
       <li>
-        <details>
+        <details class="relative z-10">
           <summary>メニュー</summary>
-          <ul class="bg-base-200 rounded-t-none p-2">
-            <%= link_to '地図から探す', spots_map_path %>
+          <ul class="absolute right-0  bg-base-200 rounded-t-none w-56 h-auto">
+            <li> <%= link_to '地図から探す', spots_map_path %> </li>
+            <li> <%= link_to '一覧から探す', spots_path %> </li>
+            <li> <%= link_to 'みんなのmy楽器を見る', instruments_path %> </li>
+            <br>
+            <li> <%= link_to '利用規約', terms_of_use_path %> </li>
+            <li> <%= link_to 'プライバシーポリシー', privacy_policy_path %> </li>
+            <li> <%= link_to 'お問い合わせ', spots_path %> </li>
           </ul>
         </details>
       </li>
