@@ -33,7 +33,7 @@ class SpotsController < ApplicationController
   end
 
   def bookmarks
-    @bookmark_spots = current_user.bookmarks.includes(:user).map(&:spot)
+    @bookmark_spots = Spot.where(id: current_user.bookmarks.pluck(:spot_id)).page(params[:page]).per(10)
   end
 
   def edit

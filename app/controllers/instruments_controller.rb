@@ -1,6 +1,6 @@
 class InstrumentsController < ApplicationController
   def index
-    @instruments = Instrument.includes(:user)
+    @instruments = Instrument.includes(:user).page(params[:page]).per(6)
   end
 
   def new
@@ -38,7 +38,7 @@ class InstrumentsController < ApplicationController
   end
 
   def likes
-    @like_instruments = current_user.likes.includes(:user).map(&:instrument)
+    @like_instruments = Instrument.where(id: current_user.instruments.pluck(:id)).page(params[:page]).per(6)
   end
 
   private
