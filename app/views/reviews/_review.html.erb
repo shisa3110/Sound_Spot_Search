@@ -1,13 +1,9 @@
 <div class="card bg-base-100 w-96 shadow-xl">
   <div class="card-body">
-    <% @reviews.each do |review| %>
+  <% if current_user && current_user.own?(review) %>
+    <%= render 'reviews/destroy_button', review: review %>
+  <% end %>
       <h3 class="small"><%= review.user&.name || "匿名ユーザー" %></h3>
       <p><%= review.body %></p>
-      <% if user_signed_in? %>
-        <%= link_to spot_review_path(@spot, review), id: "destroy-button-for-review-#{review.id}", data: { turbo_method: :delete, turbo_confirm: "この口コミを削除しますか？" }  do %>
-          <p>削除</p>
-        <% end %>
-      <% end %>
-    <% end %>
   </div>
 </div>
