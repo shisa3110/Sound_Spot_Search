@@ -1,50 +1,14 @@
 <h1 class="text-xl font-bold text-center py-6">
   一覧から探す
 </h1>
-<div class="col-lg-10 offset-lg-1">
-  <%= search_form_for @q do |f| %>
-    <div class="search-bar" data-controller="autocomplete" data-autocomplete-url-value="<%= autocomplete_spots_path %>" >
-     <%= f.label :name, "施設名から検索" %>
-     <%= f.search_field :name_cont, data: { action: "input->autocomplete#search" }%>
-     <ul data-autocomplete-target="results" class="list-group bg-white absolute w-full md:text-sm max-w-max" ></ul>
-    </div>
-     <%= f.label :address, "住所から検索" %>
-     <%= f.search_field :address_cont %>
-     <ul data-autocomplete-target="results" class="list-group bg-white absolute w-full md:text-sm max-w-max" ></ul>
 
-   <%= f.label :category, "カテゴリ" %>
-   <%= f.radio_button :category_eq, '', :checked => true %>指定なし
-   <%= f.radio_button :category_eq, 0 %>スタジオ
-   <%= f.radio_button :category_eq, 1 %>カラオケ
-   <%= f.radio_button :category_eq, 2 %>公共施設
-   <%= f.submit "検索" %>
- <% end %>
-</div>
+<%= render 'spots/search_form' %>
+
 <div class="row">
   <div class="col-12">
-   <div class="flex flex-row flex-wrap px-5 py-10">
+   <div class="flex flex-wrap justify-center gap-6">
     <% if @spots.present? %>
-      <% @spots.each do |spot| %>
-        <div class="card bg-base-100 w-96 shadow-xl pt-5" >
-          <h1 class="text-3xl font-bold text-center">
-            <%= spot.name %>
-          </h1>
-          <figure class="px-20 pt-20">
-            <%= image_tag spot.spot_image_url,  class: "rounded-xl " %>
-          </figure>
-          <div class="card-body items-center text-center">
-          <p class="py-1">
-            <%= j spot.category %>
-          </p>
-          <p class="py-1">
-            <%= j spot.address %>
-          </p>
-            <a href="<%= spot_path(spot) %>" class="btn btn-primary">
-              詳細を見る
-            </a>
-          </div>
-        </div>
-      <% end %>
+      <%= render @spots %>
     <% else %>
       <div class="mb-3">施設情報がありません</div>
     <% end %>
