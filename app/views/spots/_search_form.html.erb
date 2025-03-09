@@ -3,13 +3,13 @@
     <div class="flex flex-col md:flex-row items-start space-x-4"> 
       <div class="flex flex-col space-y-4 w-1/2">
         <div class="search-bar" data-controller="autocomplete" data-autocomplete-url-value="<%= autocomplete_spots_path %>">
-          <%= f.label :name, "施設名から検索" %>
-          <%= f.search_field :name_cont, class: "input input-bordered w-full", data: { action: "input->autocomplete#search" } %>
+          <%= f.label :name, "施設名から検索", for: "name_search" %>
+          <%= f.search_field :name_cont, id: "name_search", class: "input input-bordered w-full", data: { action: "input->autocomplete#search" } %>
           <ul data-autocomplete-target="results" class="list-group bg-white absolute w-full md:text-sm max-w-max"></ul>
         </div>
         <div>
-          <%= f.label :address, "住所から検索" %>
-          <%= f.search_field :address_cont, class: "input input-bordered w-full" %>
+          <%= f.label :address, "住所から検索", for: "address_search" %>
+          <%= f.search_field :address_cont, id: "address_search", class: "input input-bordered w-full" %>
           <ul data-autocomplete-target="results" class="list-group bg-white absolute w-full md:text-sm max-w-max"></ul>
         </div>
       </div>
@@ -18,22 +18,22 @@
         <legend class="fieldset-legend">カテゴリ</legend>
         <div class="flex flex-col space-y-2">
           <label class="flex items-center space-x-2">
-            <%= f.radio_button :category_eq, '', checked: true, class: "radio radio-xs" %>
+            <%= f.radio_button :category_eq, '', checked: true, class: "radio radio-xs", id: "category_none" %>
             <span>指定なし</span>
           </label>
 
           <label class="flex items-center space-x-2">
-            <%= f.radio_button :category_eq, 0, class: "radio radio-xs" %>
+            <%= f.radio_button :category_eq, 0, class: "radio radio-xs", id: "category_studio" %>
             <span>スタジオ</span>
           </label>
 
           <label class="flex items-center space-x-2">
-            <%= f.radio_button :category_eq, 1, class: "radio radio-xs" %>
+            <%= f.radio_button :category_eq, 1, class: "radio radio-xs", id: "category_karaoke" %>
             <span>カラオケ</span>
           </label>
 
           <label class="flex items-center space-x-2">
-            <%= f.radio_button :category_eq, 2, class: "radio radio-xs" %>
+            <%= f.radio_button :category_eq, 2, class: "radio radio-xs", id: "category_public" %>
             <span>公共施設</span>
           </label>
         </div>
