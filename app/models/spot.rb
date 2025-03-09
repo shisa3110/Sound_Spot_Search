@@ -29,7 +29,7 @@ class Spot < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["bookmarks", "reviews", "spot_tags", "tags"]
+    ["spots","bookmarks", "reviews", "spot_tags", "tags"]
   end
 
 end
