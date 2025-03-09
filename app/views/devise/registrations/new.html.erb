@@ -1,6 +1,5 @@
-<div class="flex items-center justify-center h-screen bg-base-100 pt-8 pb-12 px-6 w-full">
+<div class="flex flex-wrap justify-center gap-10 pt-5 py-10">
   <div class="w-full max-w-lg p-4 rounded-lg shadow-lg bg-base-200">
-
     <h2 class="text-lg font-bold my-2 text-center">ユーザー登録</h2>
     <%= render "devise/shared/error_messages", resource: resource %>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -19,12 +18,13 @@
           <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered", required: true %>
         </div>
 
-        <div class="form-control">
+        <fieldset class="fieldset">
           <label class="label">
             <span class="label-text">性別</span>
           </label>
-        </div>
-  
+            <%= f.select :gender, options_for_select(User.genders_i18n.invert), {}, class: 'select' %>  
+        </fieldset>
+
         <div class="form-control">
           <label class="label">
             <span class="label-text">パスワード</span>
@@ -47,16 +47,10 @@
         <div class="form-control mt-6">
           <%= f.submit "ユーザー登録", class: "btn btn-active" %>
         </div>
-      
-        <div class="text-center mt-4">
+
+        <div class="text-center mt-2">
           <%= render "devise/shared/links" %>
-        </div>
-      </div>
+      <%= link_to 'Googleアカウントでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
     <% end %>
-    <div>
-    <div>
-    <%= link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
-      <i class="fa-brands fa-google"></i>
-    </div>
   </div>
 </div>
