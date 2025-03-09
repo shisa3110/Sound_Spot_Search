@@ -33,6 +33,7 @@ class SpotsController < ApplicationController
   end
 
   def bookmarks
+    @q = Spot.ransack(params[:q])
     @bookmark_spots = Spot.where(id: current_user.bookmarks.pluck(:spot_id)).page(params[:page]).per(10)
   end
 

@@ -4,14 +4,11 @@
 
 <%= render 'spots/search_form' %>
 
-<div class="row">
-  <div class="col-12">
-   <div class="flex flex-wrap justify-center gap-6">
+  <div class="flex flex-wrap justify-center gap-6">
     <% if @spots.present? %>
       <%= render @spots %>
     <% else %>
       <div class="mb-3">施設情報がありません</div>
     <% end %>
   </div>
-</div>
 <%= paginate @spots %>
