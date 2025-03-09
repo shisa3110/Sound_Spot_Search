@@ -10,6 +10,7 @@
     </div>
      <%= f.label :address, "住所から検索" %>
      <%= f.search_field :address_cont %>
+     <ul data-autocomplete-target="results" class="list-group bg-white absolute w-full md:text-sm max-w-max" ></ul>
 
    <%= f.label :category, "カテゴリ" %>
    <%= f.radio_button :category_eq, '', :checked => true %>指定なし
