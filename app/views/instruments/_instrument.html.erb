@@ -1,14 +1,14 @@
-  <div class="card-body">
-    <div class="card bg-base-100 w-96 shadow-xl pt-5" >
-    <p class="py-1 text-right">
-      <% if user_signed_in? %>
+<div class="card bg-base-200 w-96 shadow-xl pt-5" >
+  <% if user_signed_in? %>
+    <p class="py-1 mx-2 text-right ">
       <%= render 'instruments/like_button', instrument: instrument %>
-        <% if current_user && current_user.own?(instrument) %>
-          <%= render 'instruments/edit_button', instrument: instrument %>
-          <%= render 'instruments/destroy_button', instrument: instrument %>
-        <% end %>
+      <% if current_user && current_user.own?(instrument) %>
+        <%= render 'instruments/edit_button', instrument: instrument %>
+        <%= render 'instruments/destroy_button', instrument: instrument %>
       <% end %>
     </p>
+  <% end %>
+    
       <h1 class="text-3xl font-bold text-center">
         <%= instrument.title %>
       </h1>

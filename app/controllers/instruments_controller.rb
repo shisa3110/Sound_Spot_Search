@@ -38,7 +38,7 @@ class InstrumentsController < ApplicationController
   end
 
   def likes
-    @like_instruments = Instrument.where(id: current_user.instruments.pluck(:id)).page(params[:page]).per(6)
+    @like_instruments = Instrument.where(id: current_user.likes.pluck(:instrument_id)).page(params[:page]).per(6)
   end
 
   private
