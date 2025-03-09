@@ -2,14 +2,16 @@
   地図から探す
 </h1>
 
-<div class="container">
-  <div class="btn btn-active" id="current-location-button">
-    現在地を取得する
-  </div>
+<div class="container flex justify-center my-2">
+  <input type="text" id="search-input" class="input input-bordered w-full max-w-xs" placeholder="施設名または住所で検索">
+  <button id="search-button" class="btn btn-primary">検索</button>
 </div>
 
-<div class="map-container">
-  <div id="map"></div>
+<div class="map-container flex justify-center">
+  <div id="map" class="w-full h-[500px] max-w-4xl"></div>
+</div>
+<div class="btn btn-active" id="current-location-button">
+現在地を取得する
 </div>
 
 <script>
@@ -90,6 +92,55 @@
 
       })();
       <% end %>
+    let markers = []; // マーカーを管理するための配列
+
+      document.getElementById("search-input").addEventListener("input", function () {
+        const query = this.value;
+      
+        if (query.length > 0) {
+          fetch(`/spots/autocomplete?q=${query}`)
+            .then(response => response.json())
+            .then(spots => {
+              // 既存のマーカーを削除
+              markers.forEach(marker => marker.setMap(null));
+              markers = [];
+      
+              // 検索結果をマップに表示
+              spots.forEach(spot => {
+                const marker = new google.maps.Marker({
+                  position: { lat: spot.latitude, lng: spot.longitude },
+                  map: map,
+                  title: spot.name
+                });
+      
+                // 吹き出し（InfoWindow）を追加
+                const infowindow = new google.maps.InfoWindow({
+                  content: `
+                    <div class="p-4 max-w-s rounded-lg shadow-md flex flex-col items-center py-2">
+                      <h1 class="text-xl font-bold text-center py-6">${spot.name}</h1>
+                      <p>${spot.address}</p>
+                      <br>
+                      <a href="/spots/${spot.id}" class="btn btn-primary">詳細を見る</a>
+                    </div>
+                  `
+                });
+      
+                marker.addListener("click", () => {
+                  infowindow.open(map, marker);
+                });
+      
+                markers.push(marker);
+              });
+      
+              // 最初の検索結果にマップを移動
+              if (spots.length > 0) {
+                map.setCenter({ lat: spots[0].latitude, lng: spots[0].longitude });
+                map.setZoom(14);
+              }
+            })
+            .catch(error => console.error("検索エラー:", error));
+        }
+      });
   }  
 
   window.initMap = initMap;

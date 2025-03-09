@@ -27,4 +27,9 @@ class Spot < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     [ "address", "category", "created_at", "id", "latitude", "longitude", "name", "opening_hours", "phone_number", "place_id", "postal_code", "room_charge", "spot_image", "updated_at", "web_site" ]
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["bookmarks", "reviews", "spot_tags", "tags"]
+  end
+
 end
