@@ -1,20 +1,30 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-2">
-      <h1>施設情報入力用</h1>
-      <%= form_with model: @spot, local: true, data: { turbo: false } do |f| %>
-        <div class="form-control">
-          <%= f.label :name, "施設名", class: "label" %>
-          <%= f.text_field :name, class: "input input-bordered", required: true %>
-
+<div class="flex flex-wrap justify-center gap-10 pt-5 py-10">
+  <div class="w-full max-w-lg p-4 rounded-lg shadow-lg bg-base-200">
+  <h2 class="text-lg font-bold my-2 text-center">
+    一覧から探す
+  </h2>
+  <%= form_with model: @spot, local: true, data: { turbo: false } do |f| %>
+    <div class="card-body">
+      <div class="form-control">
+        <label class="label">
+          <span class="label-text">施設名</span>
+        </label>
+        <%= f.text_field :name, class: "input input-bordered", required: true %>
+      </div>
           <div class="mb-3">
-            <%= f.label :spot_image, "施設写真" %>
-            <%= f.file_field :spot_image, class: "form-control", accept: 'image/*' %>
+            <label class="label">
+              <span class="label-text">施設の写真</span>
+            </label>
+            <%= f.file_field :spot_image, class: "file-input-accent", accept: 'image/*' %>
             <%= f.hidden_field :spot_image_cache %>
           </div>
 
-          <%= f.label :category, "施設カテゴリ", class: "label" %>
-          <%= f.select :category, options_for_select(Spot.categories_i18n.invert), {} %>
+          <fieldset class="fieldset">
+          <label class="label">
+            <span class="label-text">施設カテゴリ</span>
+          </label>
+            <%= f.select :category, options_for_select(Spot.categories_i18n.invert), {}, class: 'select' %>  
+          </fieldset>
 
           <%= f.label :postal_code, "郵便番号", class: "label" %>
           <%= f.text_field :postal_code, class: "input input-bordered", required: true %>
@@ -47,4 +57,3 @@
       <% end %>
     </div>
   </div>
-</div>
