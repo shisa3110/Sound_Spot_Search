@@ -42,13 +42,18 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    user = find_by(email: auth.info.email) ||
-           where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-            user.name = auth.info.name
-            user.email = auth.info.email
-            user.password = Devise.friendly_token(10)
-            user.gender = 0
-           end
-    user
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.name = auth.info.name
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if (data = session["devise.google_data"]&.dig("extra", "raw_info"))
+        user.email = data["email"] if user.email.blank?
+      end
+    end
   end
 end
