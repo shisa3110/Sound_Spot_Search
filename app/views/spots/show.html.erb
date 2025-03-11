@@ -21,7 +21,7 @@
       <%= image_tag @spot.spot_image_url, class: "card-img-top", width: "200", height:"100" %>
     </div>
     <p class="py-1">
-      <%= j @spot.category %>
+      <%= @spot.human_attribute_enum(:category) %></br>
     </p>
     <p class="py-1">
       〒 <%= j @spot.postal_code %></br>

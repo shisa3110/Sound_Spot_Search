@@ -21,7 +21,7 @@
       <%= @user.name %>
     </h1>
     <p class="pt-5 py-1">
-      <%= @user.gender %></br>
+      <%= @user.human_attribute_enum(:gender) %></br>
     </p>
     <p class="py-1">
       <%= @user.email %></br>

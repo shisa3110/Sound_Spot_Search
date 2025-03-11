@@ -14,7 +14,7 @@
         </div>
 
         <%= f.label :category, "施設カテゴリ", class: "label" %>
-        <%= f.select :category, options_for_select(Spot.categories_i18n.invert), {}, class: "category-select" %>
+        <%= f.select :category, Spot.enum_options_for_select(:category),class: 'select' %>  
   
         <%= f.label :postal_code, "郵便番号", class: "label" %>
         <%= f.text_field :postal_code, class: "input input-bordered", required: true %>

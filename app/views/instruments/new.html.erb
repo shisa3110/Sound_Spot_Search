@@ -14,7 +14,7 @@
           </div>
 
           <%= f.label :kind, "楽器の種類", class: "label" %>
-          <%= f.select :kind, options_for_select(Instrument.kinds_i18n.invert), {} %>
+          <%= f.select :kind, Instrument.enum_options_for_select(:kind),class: 'select' %>
 
 
           <%= f.label :comment, "コメント", class: "label" %>

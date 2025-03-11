@@ -23,7 +23,7 @@
           <label class="label">
             <span class="label-text">施設カテゴリ</span>
           </label>
-            <%= f.select :category, options_for_select(Spot.categories_i18n.invert), {}, class: 'select' %>  
+          <%= f.select :category, Spot.enum_options_for_select(:category),class: 'select' %>  
           </fieldset>
 
           <%= f.label :postal_code, "郵便番号", class: "label" %>
