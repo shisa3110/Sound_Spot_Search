@@ -22,7 +22,7 @@
           <label class="label">
             <span class="label-text">性別</span>
           </label>
-          <%= f.select :gender, User.enum_options_for_select(:gender), class: 'select' %>
+          <%= f.select :gender, User.enum_options_for_select(:gender) %>
         </fieldset>
 
         <div class="form-control">
