@@ -58,7 +58,7 @@ class SpotsController < ApplicationController
   end
 
   def autocomplete
-    @q = Spot.ransack(name_or_address_cont: params[:q])
+    @q = Spot.ransack(name_cont: params[:q])
     @spots = @q.result(distinct: true).limit(10)
 
     render json: @spots.as_json(only: [ :id, :name, :address, :latitude, :longitude ])

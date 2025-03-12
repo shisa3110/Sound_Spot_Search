@@ -1,6 +1,6 @@
 class InstrumentsController < ApplicationController
   def index
-    @instruments = Instrument.includes(:user).page(params[:page]).per(6)
+    @instruments = Instrument.order(:created_at).page(params[:page]).per(6)
   end
 
   def new
