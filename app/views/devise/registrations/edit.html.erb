@@ -34,14 +34,14 @@
           </span>
         <% end %>
       </label>
-      <%= f.password_field :password, placeholder: "パスワード", class: "input input-bordered", required: true %>
+      <%= f.password_field :password, placeholder: "変更する場合のみ入力", class: "input input-bordered"%>
     </div>
 
     <div class="form-control">
       <label class="label">
         <span class="label-text">パスワード（確認用）</span>
       </label>
-      <%= f.password_field :password_confirmation, placeholder: "パスワード（確認用）", class: "input input-bordered", required: true %>
+      <%= f.password_field :password_confirmation, placeholder: "変更する場合のみ入力（確認用）", class: "input input-bordered" %>
     </div>
 
     <div class="form-control mt-6">

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   has_many :bookmarks, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :boards, dependent: :destroy
@@ -12,6 +13,8 @@ class User < ApplicationRecord
 
   enum :gender, { gender_private: 0, male: 1, female: 2, others: 3 }
 
+  # パスワードのバリデーション（新規作成時のみ必須）
+  validates :password, presence: true, length: { minimum: 6 }, if: :password_required?
 
   def bookmark(spot)
     bookmarks.create(spot: spot) unless bookmark?(spot)
@@ -55,5 +58,9 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def password_required?
+    new_record? || password.present?
   end
 end
