@@ -59,13 +59,6 @@ group :development, :test do
   # devise用の日本語化gem。
   gem "devise-i18n"
   gem "devise-i18n-views"
-
-  # 検索のためのgem。
-  gem "ransack"
-
-  # ページネーションのためのgem。
-  gem "kaminari"
-
   gem "mini_magick"
 
 end
@@ -94,4 +87,8 @@ group :development, :production, :test do
   gem "omniauth-google-oauth2"
   gem "omniauth-rails_csrf_protection"
   gem "meta-tags"
+  # ページネーションのためのgem。
+  gem "kaminari"
+  # 検索のためのgem。
+  gem "ransack"
 end
