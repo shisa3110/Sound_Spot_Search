@@ -1,6 +1,7 @@
 class Instrument < ApplicationRecord
   validates :title, presence: true, length: { maximum: 255 }
   validates :comment, presence: true, length: { maximum: 65_535 }
+  validates :instrument_image, presence: true
   
   belongs_to :user
   has_many :likes, dependent: :destroy
