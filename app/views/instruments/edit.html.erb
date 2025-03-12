@@ -13,6 +13,13 @@
 
           <div class="mb-3">
             <%= f.label :instrument_image, "my楽器写真" %>
+            <% if @instrument.instrument_image? %>
+            <div class="mb-2">
+              <%= image_tag @instrument.instrument_image.url, alt: "Instrument Image", class: "w-full h-auto" %>
+            </div>
+            <% else %>
+            <p>画像が保存されていません</p>
+          <% end %>
             <%= f.file_field :instrument_image, class: "form-control", accept: 'image/*' %>
             <%= f.hidden_field :image_cache %>
           </div>
