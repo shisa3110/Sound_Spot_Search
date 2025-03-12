@@ -54,13 +54,6 @@ group :development, :test do
 
   # 環境変数を使うためのgem。
   gem "dotenv-rails"
-
-  gem "rails-i18n"
-  # devise用の日本語化gem。
-  gem "devise-i18n"
-  gem "devise-i18n-views"
-  gem "mini_magick"
-
 end
 
 group :development do
@@ -91,4 +84,9 @@ group :development, :production, :test do
   gem "kaminari"
   # 検索のためのgem。
   gem "ransack"
+  gem "rails-i18n"
+  # devise用の日本語化gem。
+  gem "devise-i18n"
+  gem "devise-i18n-views"
+  gem "mini_magick"
 end
