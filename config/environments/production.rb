@@ -91,4 +91,17 @@ Rails.application.configure do
   config.hosts << 'sound-spot-search.com'
 
   config.assets.compile = true
+
+  config.action_mailer.default_url_options = { protocol: 'https', host: host }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :port => 587,
+    :domain => 'gmail.com',
+    :address => "smtp.gmail.com",
+    :user_name => ENV["GMAIL_USERNAME"] ,
+    :password => ENV["GMAIL_PASSWORD"] ,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end
