@@ -62,6 +62,7 @@ group :development do
   # GitHubアクションのCI導入
   gem "rspec-rails"
   gem "rubocop", require: false
+  gem "letter_opener_web"
 end
 
 group :test do
