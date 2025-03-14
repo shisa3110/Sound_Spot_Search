@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   enum :gender, { gender_private: 0, male: 1, female: 2, others: 3 }
 
+  validates :name, presence: true 
   # パスワードのバリデーション（新規作成時のみ必須）
   validates :password, presence: true, length: { minimum: 6 }, if: :password_required?
 
