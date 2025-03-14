@@ -54,13 +54,15 @@ group :development, :test do
 
   # 環境変数を使うためのgem。
   gem "dotenv-rails"
+
+  gem 'factory_bot_rails'
+  gem "rspec-rails"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   # GitHubアクションのCI導入
-  gem "rspec-rails"
   gem "rubocop", require: false
   gem "letter_opener_web"
 end
