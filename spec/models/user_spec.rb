@@ -33,5 +33,51 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
   end
+
+
+  describe '#bookmark' do
+    it 'スポットをブックマークできる' do
+      expect { user.bookmark(spot) }.to change { user.bookmarks.count }.by(1)
+    end
+
+    it 'すでにブックマーク済みなら何もしない' do
+      user.bookmark(spot)
+      expect { user.bookmark(spot) }.not_to change { user.bookmarks.count }
+    end
+  end
+
+  describe '#unbookmark' do
+    it 'ブックマークを解除できる' do
+      user.bookmark(spot)
+      expect { user.unbookmark(spot) }.to change { user.bookmarks.count }.by(-1)
+    end
+  end
+
+  describe '#like' do
+    it '楽器をいいねできる' do
+      expect { user.like(instrument) }.to change { user.likes.count }.by(1)
+    end
+    end
+
+  describe '#unlike' do
+    it 'いいねを解除できる' do
+      user.like(instrument)
+      expect { user.unlike(instrument) }.to change { user.likes.count }.by(-1)
+    end
+  end
+
+  describe '#own?' do
+    let(:board) { create(:board, user: user) }
+
+    it '自分のオブジェクトならtrueを返す' do
+      expect(user.own?(board)).to be true
+    end
+
+    it '他人のオブジェクトならfalseを返す' do
+      other_user = create(:user)
+      expect(other_user.own?(board)).to be false
+    end
+  end
 end
+
 
