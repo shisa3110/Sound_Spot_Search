@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:user) { create(:user) }
+  let(:spot) { create(:spot) }
+
   describe "バリデーションのテスト" do
     let(:user) { build(:user) }
     it "全ての値が適切なら有効である" do
