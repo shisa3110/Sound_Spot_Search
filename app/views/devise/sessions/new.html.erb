@@ -23,6 +23,7 @@
         </div>
         <div class="text-center mt-4">
           <%= render "devise/shared/links" %>
+          <%= link_to 'Googleアカウントでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
         </div>
       </div>
     <% end %>
