@@ -38,6 +38,13 @@ namespace :get_spot_details do
         # JSON形式のデータを、Rubyオブジェクトに変換
         place_detail_data = JSON.parse(place_detail_page)
 
+        photo_reference = place_detail_data.dig("result", "photos", 0, "photo_reference")
+        spot_image = if photo_reference
+          "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{API_KEY}"
+        else
+          nil
+        end
+
         # 取得したデータを保存するカラム名と同じキー名で、ハッシュ（result）に保存
         result = {}
         result[:name] = place_detail_data["result"]["name"]
@@ -52,6 +59,7 @@ namespace :get_spot_details do
         result[:latitude] = place_detail_data["result"]["geometry"]["location"]["lat"]
         result[:longitude] = place_detail_data["result"]["geometry"]["location"]["lng"]
         result[:place_id] = place_id
+        result[:spot_image] = spot_image
 
         result
       else
@@ -67,6 +75,7 @@ namespace :get_spot_details do
       category = row['カテゴリ']
       spot_data = get_detail_data(row)
       if spot_data
+        spot_data[:category] = category
         spot = Spot.create!(spot_data)
         puts "Spotを保存しました: #{row['施設名']}"
         puts "----------"
