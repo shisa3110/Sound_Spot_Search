@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def my_reviews
-    @my_reviews = current_user.reviews.includes(:spot)
+    @my_reviews = current_user.reviews.includes(:spot).page(params[:page]).per(4)
   end
   
   def my_instruments
