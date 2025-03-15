@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
   let(:spot) { create(:spot) }
+  let(:instrument) { create(:instrument, user: user) } 
 
   describe "バリデーションのテスト" do
-    let(:user) { build(:user) }
     it "全ての値が適切なら有効である" do
       expect(user).to be_valid
     end
@@ -32,8 +32,13 @@ RSpec.describe User, type: :model do
     end
 
     it "重複したメールアドレスは無効" do
-      create(:user, email: user.email)
-      expect(user).to be_invalid
+      # 最初のユーザーを作成
+      user = create(:user)
+      
+      # 同じメールアドレスでユーザーを作成しようとしてエラーが発生することを確認
+      new_user = build(:user, email: user.email)
+      expect(new_user).not_to be_valid
+      expect(new_user.errors[:email]).to include("は既に使用されています。")
     end
   end
 
@@ -70,15 +75,15 @@ RSpec.describe User, type: :model do
   end
 
   describe '#own?' do
-    let(:board) { create(:board, user: user) }
+    let(:spot) { create(:instrument, user: user) }
 
-    it '自分のオブジェクトならtrueを返す' do
-      expect(user.own?(board)).to be true
+    it '自分のならtrueを返す' do
+      expect(user.own?(instrument)).to be true
     end
 
     it '他人のオブジェクトならfalseを返す' do
       other_user = create(:user)
-      expect(other_user.own?(board)).to be false
+      expect(other_user.own?(instrument)).to be false
     end
   end
 end

@@ -11,11 +11,11 @@ RSpec.describe "Users", type: :system do
     it '新規ユーザーを登録できる' do
       visit new_user_registration_path
 
-      fill_in '名前', with: '新規ユーザー'
-      fill_in 'Eメール', with: 'new@example.com'
+      fill_in 'ユーザー名', with: '新規ユーザー'
+      fill_in 'メールアドレス', with: 'new@example.com'
       fill_in 'パスワード', with: 'password'
       fill_in 'パスワード（確認用）', with: 'password'
-      click_button '登録'
+      click_button 'ユーザー登録'
 
       expect(page).to have_content 'アカウント登録が完了しました'
     end
@@ -25,7 +25,7 @@ RSpec.describe "Users", type: :system do
     it '既存ユーザーがログインできる' do
       visit new_user_session_path
 
-      fill_in 'Eメール', with: user.email
+      fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
       click_button 'ログイン'
 
@@ -34,6 +34,8 @@ RSpec.describe "Users", type: :system do
   end
 
   describe 'ログアウト' do
+    let(:user) { create(:user) }
+    
     it 'ログアウトできる' do
       login_as(user, scope: :user)
       visit root_path
