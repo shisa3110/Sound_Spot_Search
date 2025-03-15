@@ -32,7 +32,7 @@
       <% if valid_url?(@spot.web_site) %>
         <%= link_to @spot.web_site, @spot.web_site, class: "link link-hover", target: "_blank", rel: "noopener" %>
       <% else %>
-        <p class="text-error">webサイト不明</p>
+        <p class="text">webサイト不明</p>
       <% end %>
     </p>
     <p class="py-1">

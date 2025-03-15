@@ -42,6 +42,8 @@ class SpotsController < ApplicationController
 
   def update
     @spot = Spot.find(params[:id])
+    # 画像削除チェックが入っていたら remove_spot_image を true に設定。carrier_wave用の記述。
+    @spot.remove_spot_image! if params[:spot][:remove_spot_image] == "1"
     @spot.assign_attributes(spot_params)
     if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).to_s.split(",").uniq)
        redirect_to spot_path(@spot), success: "施設情報を作成しました"

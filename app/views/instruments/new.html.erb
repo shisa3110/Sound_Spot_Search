@@ -15,7 +15,7 @@
         <label class="label">
           <span class="label-text">my楽器写真</span>
         </label>
-          <%= f.file_field :instrument_image, class: "form-control", accept: 'image/*' %>
+          <%= f.file_field :instrument_image, class: "form-control", accept: 'image/*', required: true %>
           <%= f.hidden_field :image_cache %>
         </div>
 
