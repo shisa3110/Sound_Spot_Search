@@ -1,13 +1,13 @@
 <div class="card bg-base-200 w-96 shadow-xl pt-5" >
   <% if user_signed_in? %>
-    <p class="py-1 mx-2 text-right">
+    <p class="py-1 mx-4 text-right">
       <%= render 'bookmark_button', {spot: spot} %>
     </p>
   <% end %>
-          <h1 class="text-3xl font-bold text-center">
+          <h1 class="text-3xl font-bold text-center mx-4">
             <%= spot.name %>
           </h1>
-          <figure class="px-20 pt-20">
+          <figure class="px-10 pt-10">
             <%= image_tag spot.spot_image_url,  class: "rounded-xl " %>
           </figure>
           <div class="card-body items-center text-center">

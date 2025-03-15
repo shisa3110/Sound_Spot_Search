@@ -1,12 +1,14 @@
 <h1 class="text-xl font-bold text-center py-6">
-  一覧から探す
+  ブックマークした施設
 </h1>
 
 <div class="flex flex-wrap justify-center gap-6 mx-5 py-3">
   <% if @bookmark_spots.present? %>
     <%= render @bookmark_spots %>
   <% else %>
-    <p>ブックマークしている施設はありません。</p>
+    <div class="text-center">
+      <div class="mb-3">ブックマークした施設がありません</div>
+    </div>
   <% end %>
-  <%= paginate @bookmark_spots %>
 </div>
+<%= paginate @bookmark_spots %>

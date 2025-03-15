@@ -1,5 +1,11 @@
-<% if @my_reviews.present? %>
-  <%= render @my_reviews %>
-<% else %>
-  <div class="mb-3">口コミを投稿していません</div>
-<% end %>
+<h1 class="text-xl font-bold text-center py-6">
+  投稿した口コミ
+</h1>
+
+<div class="flex flex-wrap justify-center gap-6 mx-5 py-3">
+  <% if @my_reviews.present? %>
+    <%= render @my_reviews %>
+  <% else %>
+    <div class="mb-3">口コミを投稿していません</div>
+  <% end %>
+</div>
