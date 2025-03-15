@@ -9,6 +9,8 @@ class Spot < ApplicationRecord
 
   enum :category, { studio: 0, karaoke: 1, public_facilities: 2 }
 
+  validates :name, presence: true
+
   def save_with_tags(tag_names:)
     ActiveRecord::Base.transaction do
       self.tags = tag_names.map { |name| Tag.find_or_initialize_by(name: name.strip) }

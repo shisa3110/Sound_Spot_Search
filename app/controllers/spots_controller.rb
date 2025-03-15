@@ -46,7 +46,7 @@ class SpotsController < ApplicationController
     @spot.remove_spot_image! if params[:spot][:remove_spot_image] == "1"
     @spot.assign_attributes(spot_params)
     if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).to_s.split(",").uniq)
-       redirect_to spot_path(@spot), success: "施設情報を作成しました"
+       redirect_to spot_path(@spot), success: "施設情報を保存しました"
     else
       flash[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit, status: :unprocessable_entity
