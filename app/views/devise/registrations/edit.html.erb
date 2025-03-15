@@ -8,14 +8,14 @@
       <label class="label">
         <span class="label-text">ユーザー名</span>
       </label>
-      <%= f.text_field :name, placeholder: "ユーザー名", class: "input input-bordered", required: true %>
+      <%= f.text_field :name, placeholder: "ユーザー名", class: "input input-bordered bg-white", required: true %>
     </div>
 
     <div class="form-control">
       <label class="label">
         <span class="label-text">メールアドレス</span>
       </label>
-      <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered", required: true %>
+      <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered bg-white", required: true %>
     </div>
 
     <fieldset class="fieldset">
@@ -34,14 +34,14 @@
           </span>
         <% end %>
       </label>
-      <%= f.password_field :password, placeholder: "変更する場合のみ入力", class: "input input-bordered"%>
+      <%= f.password_field :password, placeholder: "変更する場合のみ入力", class: "input input-bordered bg-white"%>
     </div>
 
     <div class="form-control">
       <label class="label">
         <span class="label-text">パスワード（確認用）</span>
       </label>
-      <%= f.password_field :password_confirmation, placeholder: "変更する場合のみ入力（確認用）", class: "input input-bordered" %>
+      <%= f.password_field :password_confirmation, placeholder: "変更する場合のみ入力（確認用）", class: "input input-bordered bg-white" %>
     </div>
 
     <div class="form-control mt-6">

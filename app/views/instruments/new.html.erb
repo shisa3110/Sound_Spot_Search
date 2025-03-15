@@ -8,7 +8,7 @@
           <label class="label">
             <span class="label-text">タイトル</span>
           </label>
-          <%= f.text_field :title, class: "input input-bordered", required: true %>
+          <%= f.text_field :title, class: "input input-bordered bg-white", required: true %>
         </div>
 
         <div class="mb-3">
@@ -30,7 +30,7 @@
       <label class="label">
         <span class="label-text">コメント</span>
       </label>
-      <%= f.text_area :comment, class: "textarea textarea-bordered", rows: 5, placeholder: "コメントを入力してください", required: true %>
+      <%= f.text_area :comment, class: "textarea textarea-bordered bg-white", rows: 5, placeholder: "コメントを入力してください", required: true %>
     </div>          
         <div class="form-control mt-6">
           <%= f.submit "送信", class: "btn btn-primary" %>

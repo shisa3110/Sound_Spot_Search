@@ -3,8 +3,7 @@
 </h1>
 
 <div class="container flex justify-center my-2 relative">
-  <input type="text" id="search-input" class="input input-bordered w-full max-w-xs" placeholder="施設名または住所で検索">
-  <button id="search-button" class="btn btn-primary">検索</button>
+  <input type="text" id="search-input" class="input input-bordered w-full max-w-xs  bg-white" placeholder="施設名または住所を入力">
   <ul id="autocomplete-results" class="autocomplete-results hidden absolute w-full max-w-xs bg-white shadow-lg mt-1 z-10">
 </div>
 
@@ -22,8 +21,8 @@
     const mapElement = document.getElementById('map');
 
     const mapOptions = {
-      center: {lat: 35.681236, lng: 139.767125},
-      zoom: 16,
+      center: {lat: 35.658034, lng: 139.701636},
+      zoom: 17,
     };
 
     map = new google.maps.Map(mapElement, mapOptions);
@@ -102,7 +101,7 @@
       
       if (place.geometry) {
         map.setCenter(place.geometry.location);
-        map.setZoom(14);
+        map.setZoom(18);
 
         // 選択した場所にマーカーを表示
         const marker = new google.maps.Marker({
