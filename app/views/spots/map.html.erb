@@ -61,11 +61,26 @@
     // 施設情報に基づいてマーカーを表示させる処理
     <% @spots.each do |spot| %>
       (() => {
-      const marker = new google.maps.Marker({
-        position: {lat: <%= spot.latitude %>, lng: <%= spot.longitude %>},
-        map: map,
-        title: '<%= j spot.name %>',
-      });
+        // カテゴリごとのピン画像を指定
+        const categoryIcons = {
+          "studio": "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",  // スタジオ（青）
+          "karaoke": "https://maps.google.com/mapfiles/ms/icons/red-dot.png",   // カラオケ（赤）
+          "public_facilities": "https://maps.google.com/mapfiles/ms/icons/green-dot.png" // 公共施設（緑）
+        };
+    
+        // カテゴリに対応するアイコンを取得（
+        const iconUrl = categoryIcons["<%= spot.category %>"] || "https://maps.google.com/mapfiles/ms/icons/gray-dot.png";
+    
+        const marker = new google.maps.Marker({
+          position: { lat: <%= spot.latitude %>, lng: <%= spot.longitude %> },
+          map: map,
+          title: '<%= j spot.name %>',
+          icon: {
+            url: iconUrl, // カスタムアイコンを設定
+            scaledSize: new google.maps.Size(40, 40) // アイコンのサイズ
+          }
+        });
+    
 
       const infowindow = new google.maps.InfoWindow({
         content: `
@@ -103,11 +118,7 @@
         map.setCenter(place.geometry.location);
         map.setZoom(18);
 
-        // 選択した場所にマーカーを表示
-        const marker = new google.maps.Marker({
-          position: place.geometry.location,
-          map: map,
-        });
+
 
         const infowindow = new google.maps.InfoWindow({
           content: `<h1>${place.name}</h1><p>${place.formatted_address}</p>`,
