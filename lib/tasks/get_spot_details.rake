@@ -64,13 +64,14 @@ namespace :get_spot_details do
     csv_file = "lib/tasks/spot.csv"
     # csvファイルの繰り返し処理で実行しデータベースへ保存
     CSV.foreach(csv_file, headers: true) do |row|
+      category = row['カテゴリ']
       spot_data = get_detail_data(row)
       if spot_data
         spot = Spot.create!(spot_data)
-        puts "Spotを保存しました: #{row['スポット名']}"
+        puts "Spotを保存しました: #{row['施設名']}"
         puts "----------"
       else
-        puts "#{row['スポット名']}の保存に失敗しました"
+        puts "#{row['施設名']}の保存に失敗しました"
       end
     end
   end
