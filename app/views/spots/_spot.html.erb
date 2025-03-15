@@ -11,9 +11,22 @@
             <%= image_tag spot.spot_image_url,  class: "rounded-xl " %>
           </figure>
           <div class="card-body items-center text-center">
-          <p class="py-1">
-            <%= spot.human_attribute_enum(:category) %></br>
-          </p>
+          <div class="flex flex-wrap gap-2 py-2">
+          <% category_classes = { 
+              "studio" => "bg-blue-500", 
+              "karaoke" => "bg-red-500", 
+              "public_facilities" => "bg-green-500" 
+            } %>
+          <span class="px-3 py-1 text-white font-bold rounded-full text-sm <%= category_classes[spot.category] %>">
+            <%= spot.human_attribute_enum(:category) %>
+          </span>
+  
+          <% spot.tags.each do |tag| %>
+            <span class="px-3 py-1 bg-gray-500 text-white font-bold rounded-full text-sm">
+              <%= tag.name %>
+            </span>
+          <% end %>
+        </div>
           <p class="py-1">
             <%= j spot.address %>
           </p>
