@@ -1,7 +1,9 @@
 name: Run rspec, rubocop
 
 on:
-  [ push ]
+  push:
+    branches:
+      - main
 
 jobs:
   rspec:
