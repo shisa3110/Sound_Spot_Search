@@ -3,7 +3,7 @@
     <%= link_to '地図検索へ戻る', spots_map_path %>
   </button>
 </div>
-<div class="flex flex-wrap justify-center gap-10 pt-5 py-10">
+<div class="flex flex-wrap justify-center gap-10 pt-5 py-10 my-5">
   <div class="w-full max-w-lg py-8 rounded-lg shadow-lg bg-base-200 text-center">
     <!-- ブックマークボタン、編集画面ボタン、削除ボタン -->
     <% if user_signed_in? %>
@@ -45,11 +45,28 @@
     </p>
   </div>
 </div>
-<div class="flex items-center justify-center h-screen bg-100 w-full">
-  <% @reviews.each do |review| %>
-    <%= render 'reviews/review', review: review %>
+
+<h2 class="text-lg font-bold my-2 text-center">
+この施設の口コミ
+</h2>
+
+<div class="flex flex-col md:flex-row justify-center gap-10 pt-5 py-10 mx-5">
+  <div class="bg-base-200 rounded-b-lg p-4 shadow-xl relative max-h-96 overflow-y-auto max-w-lg w-full">  <h3 class="text-lg font-bold my-2 text-center">口コミ一覧</h2>
+  <% if @reviews.present? %>
+    <% @reviews.each do |review| %>
+      <div class="border-b border-gray-300 pb-3 mb-3 last:border-none">
+        <%= render 'reviews/review', review: review %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="mb-3">施設情報がありません</div>
   <% end %>
-  <% if user_signed_in? %>
-    <%= render 'reviews/form', review: @review, spot: @spot %>
-  <% end %>
+</div>
+
+<div class="flex flex-wrap justify-center gap-10 pt-5 py-10 mx-5">
+  <div class="w-full max-w-lg py-8 rounded-lg shadow-lg bg-base-200 text-center">
+    <% if user_signed_in? %>
+      <%= render 'reviews/form', review: @review, spot: @spot %>
+    <% end %>
+  </div>
 </div>

@@ -1,12 +1,12 @@
-<div class="row">
-  <div class="col-lg-8 offset-lg-2">
-    <h1>口コミ投稿</h1>
+    <h1 class="text-xl font-bold text-center py-6">口コミ投稿</h1>
     <%= form_with model: review, url: spot_reviews_path(@spot), method: :post, local: true, data: { turbo: false } do |f| %>
-      <div class="mb-4">
-        <%= f.label :body, "口コミ本文", class: "label" %>
-        <%= f.text_area :body, class: "input input-bordered", required: true %>
+      <div class="form-control px-5">
+        <label class="label">
+          <span class="label-text">口コミ本文</span>
+        </label>
+        <%= f.text_area :body, class: "textarea textarea-bordered", rows: 3, placeholder: "口コミを入力してください" %>
       </div>
-      <div class="form-control mt-6">
+      <div class="form-control mt-6 px-10 ">
         <%= f.submit "送信", class: "btn btn-primary" %>
       </div>
     <% end %>
