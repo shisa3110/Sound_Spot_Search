@@ -4,16 +4,19 @@ class ReviewsController < ApplicationController
     @spot = Spot.find(params[:spot_id]) 
     @review = @spot.reviews.build(review_params) 
     if @review.save
-      redirect_to spot_path(@review.spot), success: "口コミを投稿しました"
+      flash[:success] = "口コミを投稿しました"
+      redirect_to spot_path(@review.spot)
     else
-      redirect_to spot_path(@review.spot), danger: "口コミを投稿できませんでした"
+      flash.now[:danger] = "口コミを投稿できませんでした"
+      redirect_to spot_path(@review.spot)
     end
   end
 
   def destroy
     @review = current_user.reviews.find(params[:id])
     @review.destroy!
-    redirect_to spot_path(@review.spot), notice: '口コミが削除されました'
+    flash[:success] = "口コミが削除されました"
+    redirect_to spot_path(@review.spot)
   end
 
   private

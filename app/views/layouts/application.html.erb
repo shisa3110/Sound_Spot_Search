@@ -33,8 +33,9 @@
     <% else %>
       <%= render 'shared/header_before_login' %>
     <% end %>
-    <p class="notice"><%= notice %></p>
-    <div class="bg-base-100">
+    <% flash.each do |message_type, message| %>
+      <div class="flash-message <%= message_type %>"><%= message %></div>
+    <% end %>
       <%= yield %>
     </div>
     <%= render 'shared/footer' %>

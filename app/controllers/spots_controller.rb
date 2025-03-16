@@ -46,7 +46,8 @@ class SpotsController < ApplicationController
     @spot.remove_spot_image! if params[:spot][:remove_spot_image] == "1"
     @spot.assign_attributes(spot_params)
     if @spot.save_with_tags(tag_names: params.dig(:spot, :tag_names).to_s.split(",").uniq)
-       redirect_to spot_path(@spot), success: "施設情報を保存しました"
+      flash[:success] = "口コミが削除されました"
+      redirect_to spot_path(@spot)
     else
       flash[:alert] = "更新に失敗しました。入力内容を確認してください。"
       render :edit, status: :unprocessable_entity
@@ -56,7 +57,8 @@ class SpotsController < ApplicationController
   def destroy
     @spot = Spot.find(params[:id])
     @spot.destroy!
-    redirect_to spots_map_path, success: "削除に成功しました。"
+    flash[:success] = "削除に成功しました。"
+    redirect_to spots_map_path
   end
 
   def autocomplete
