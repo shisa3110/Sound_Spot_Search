@@ -9,7 +9,7 @@ FactoryBot.define do
     phone_number { Faker::PhoneNumber.phone_number }
     web_site { Faker::Internet.url }
     place_id { Faker::Alphanumeric.alpha(number: 20) }
-    opening_hours { "9:00-22:00" } 
+    opening_hours { "9:00-22:00" }
     spot_image { Faker::Internet.url(host: 'example.com') }
     association :user
   end

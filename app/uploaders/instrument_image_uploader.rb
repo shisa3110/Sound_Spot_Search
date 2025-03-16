@@ -4,7 +4,7 @@ class InstrumentImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
   # include CarrierWave::Vips
   def default_url
-    'instrument_default.png'
+    "instrument_default.png"
   end
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -39,7 +39,7 @@ class InstrumentImageUploader < CarrierWave::Uploader::Base
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(jpg jpeg gif png)
+    %w[ jpg jpeg gif png ]
   end
 
   # Override the filename of the uploaded files:

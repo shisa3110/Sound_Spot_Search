@@ -72,7 +72,7 @@ namespace :get_spot_details do
     csv_file = "lib/tasks/spot.csv"
     # csvファイルの繰り返し処理で実行しデータベースへ保存
     CSV.foreach(csv_file, headers: true) do |row|
-      category = row['カテゴリ']
+      category = row["カテゴリ"]
       spot_data = get_detail_data(row)
       if spot_data
         spot_data[:category] = category

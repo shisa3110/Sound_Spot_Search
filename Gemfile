@@ -55,9 +55,9 @@ group :development, :test do
   # 環境変数を使うためのgem。
   gem "dotenv-rails"
 
-  gem 'factory_bot_rails'
+  gem "factory_bot_rails"
   gem "rspec-rails"
-  gem 'faker'
+  gem "faker"
 end
 
 group :development do

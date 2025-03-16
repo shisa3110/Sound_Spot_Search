@@ -40,12 +40,12 @@ RSpec.describe "Spots", type: :system do
   describe '施設情報の削除' do
     let(:spot) { create(:spot, user: user) }
 
-    it '施設情報を削除できる' , js: true do
+    it '施設情報を削除できる', js: true do
       visit spot_path(spot)
 
       expect(page).to have_selector("a[data-method='delete'][href='#{spot_path(spot)}']", visible: :all)
       find("a[data-method='delete'][href='#{spot_path(spot)}']").click
-    
+
       expect(page).to have_content '削除に成功しました'
       expect(page).not_to have_content(spot.name)
     end

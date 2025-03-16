@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Spot, type: :model do
-  let(:spot) { build(:spot) } 
+  let(:spot) { build(:spot) }
   let!(:tag1) { create(:tag, name: 'タグ1') }
   let!(:tag2) { create(:tag, name: 'タグ2') }
   let(:review) { create(:review) }
@@ -9,7 +9,7 @@ RSpec.describe Spot, type: :model do
   describe 'バリデーション' do
     it 'nameが必須' do
       spot.name = nil
-      expect(spot).to be_invalid 
+      expect(spot).to be_invalid
     end
   end
 
@@ -17,8 +17,8 @@ RSpec.describe Spot, type: :model do
     it 'タグが正しく保存される' do
       spot.save
 
-      spot.save_with_tags(tag_names: ['タグ1', 'タグ2'])
-      spot.reload 
+      spot.save_with_tags(tag_names: [ 'タグ1', 'タグ2' ])
+      spot.reload
 
       expect(spot.tags.count).to eq(2) # 2つのタグが関連付けられていることを確認
       expect(spot.tags).to include(tag1, tag2) # タグが正しく関連付けられていることを確認

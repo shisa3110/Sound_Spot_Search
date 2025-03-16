@@ -35,7 +35,7 @@ RSpec.describe "Users", type: :system do
 
   describe 'ログアウト' do
     let(:user) { create(:user) }
-    
+
     it 'ログアウトできる' do
       login_as(user, scope: :user)
       visit root_path

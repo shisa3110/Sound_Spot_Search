@@ -10,7 +10,7 @@ class InstrumentsController < ApplicationController
   def create
     @instrument = current_user.instruments.build(instrument_params)
     if @instrument.save
-      flash[:success] = "my楽器を投稿しました" 
+      flash[:success] = "my楽器を投稿しました"
       redirect_to instruments_path
     else
       flash.now[:danger] = "投稿に失敗しました"
@@ -25,7 +25,7 @@ class InstrumentsController < ApplicationController
   def update
     @instrument = current_user.instruments.find(params[:id])
     if @instrument.update(instrument_params)
-      flash[:success] = "投稿を編集しました" 
+      flash[:success] = "投稿を編集しました"
       redirect_to instruments_pathx
     else
       flash.now[:danger] = "編集に失敗しました"
@@ -36,7 +36,7 @@ class InstrumentsController < ApplicationController
   def destroy
     @instrument = Instrument.find(params[:id])
     @instrument.destroy!
-    flash[:success] = "投稿を削除しました" 
+    flash[:success] = "投稿を削除しました"
     redirect_to instruments_path
   end
 
@@ -48,5 +48,4 @@ class InstrumentsController < ApplicationController
   def instrument_params
     params.require(:instrument).permit(:title, :comment, :instrument_image, :kind)
   end
-
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
   let(:spot) { create(:spot) }
-  let(:instrument) { create(:instrument, user: user) } 
+  let(:instrument) { create(:instrument, user: user) }
 
   describe "バリデーションのテスト" do
     it "全ての値が適切なら有効である" do
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     it "重複したメールアドレスは無効" do
       # 最初のユーザーを作成
       user = create(:user)
-      
+
       # 同じメールアドレスでユーザーを作成しようとしてエラーが発生することを確認
       new_user = build(:user, email: user.email)
       expect(new_user).not_to be_valid
@@ -87,5 +87,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
-

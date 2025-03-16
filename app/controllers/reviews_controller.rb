@@ -1,8 +1,8 @@
 class ReviewsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :destroy]
+  before_action :authenticate_user!, only: [ :create, :destroy ]
   def create
-    @spot = Spot.find(params[:spot_id]) 
-    @review = @spot.reviews.build(review_params) 
+    @spot = Spot.find(params[:spot_id])
+    @review = @spot.reviews.build(review_params)
     if @review.save
       flash[:success] = "口コミを投稿しました"
       redirect_to spot_path(@review.spot)
