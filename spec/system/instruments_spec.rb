@@ -29,19 +29,19 @@ RSpec.describe "Instruments", type: :system do
         visit new_instrument_path
         fill_in "instrument[title]", with: "新しい楽器"
         fill_in "instrument[comment]", with: "これはテストの楽器です"
-        fill_in "楽器の種類", with: "violin"
-        attach_file "my楽器写真", Rails.root.join("spec/fixtures/sample_instrument_image.jpg")
+        fill_in "instrument[kind]", with: "violin"
+        attach_file "instrument[instrument_image]", Rails.root.join("spec/fixtures/sample_instrument_image.jpg")
         click_button "送信"
-        expect(page).to have_content("my楽器投稿に成功しました")
+        expect(page).to have_content("my楽器を投稿しました")
       end
     end
 
-    context "無効なパラメータでmy楽器を投稿するとき" do
-      it "my楽器の作成が失敗し、エラーメッセージが表示される" do
-        visit new_instrument_path
-        click_button "送信"
-        expect(page).to have_content("投稿に失敗しました")
-      end
+  context "無効なパラメータでmy楽器を投稿するとき" do
+    it "my楽器の作成が失敗し、エラーメッセージが表示される" do
+      post instruments_path, params: { instrument: { name: '', category: '' } }
+  
+      visit current_path
+      expect(page).to have_content("投稿に失敗しました")
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe "Instruments", type: :system do
     context "有効なパラメータでmy楽器投稿を編集するとき" do
       it "my楽器投稿が更新され、一覧ページにリダイレクトする" do
         visit edit_instrument_path(instrument)
-        ffill_in "instrument[title]", with: "更新した楽器"
+        fill_in "instrument[title]", with: "更新した楽器"
         click_button "送信"
         expect(page).to have_content("投稿の編集に成功しました")
       end
@@ -74,6 +74,7 @@ RSpec.describe "Instruments", type: :system do
 
   describe "DELETE /instruments/:id" do
     it "my楽器投稿が削除され、一覧ページにリダイレクトする" do
+      instrument = create(:instrument)
       visit instruments_path
       find("a[data-method='delete'][href='#{instrument_path(instrument)}']").click
       expect(page).to have_content("削除に成功しました。")
