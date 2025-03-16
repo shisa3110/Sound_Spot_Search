@@ -71,19 +71,8 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers, type: :system
-  Capybara.register_driver :selenium_chrome do |app|
-    options = Selenium::WebDriver::Chrome::Options.new
-    options.binary = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-  
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
-  end
-  
-  
-  Capybara.javascript_driver = :selenium_chrome
-  Capybara.default_driver = :selenium_chrome
-  Capybara.server = :puma
-  
 end
 
+require 'capybara/rspec'
+Capybara.configure do |config|
+end
