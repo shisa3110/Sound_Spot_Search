@@ -4,6 +4,7 @@ class Spot < ApplicationRecord
   has_many :spot_tags
   has_many :tags, through: :spot_tags
   has_many :reviews, dependent: :destroy
+  belongs_to :user 
 
   mount_uploader :spot_image, SpotImageUploader
 

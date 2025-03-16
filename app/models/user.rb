@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
   has_many :bookmarks, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_many :boards, dependent: :destroy
+  has_many :spots, dependent: :destroy
   has_many :instruments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :authentications, dependent: :destroy

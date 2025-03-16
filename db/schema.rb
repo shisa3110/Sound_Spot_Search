@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_10_161427) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_16_072751) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -89,6 +89,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_161427) do
     t.string "place_id"
     t.string "opening_hours"
     t.string "spot_image"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_spots_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -125,4 +127,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_161427) do
   add_foreign_key "reviews", "users"
   add_foreign_key "spot_tags", "spots"
   add_foreign_key "spot_tags", "tags"
+  add_foreign_key "spots", "users"
 end
