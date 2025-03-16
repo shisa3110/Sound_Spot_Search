@@ -36,12 +36,13 @@ RSpec.describe "Instruments", type: :system do
       end
     end
 
-  context "無効なパラメータでmy楽器を投稿するとき" do
-    it "my楽器の作成が失敗し、エラーメッセージが表示される" do
-      post instruments_path, params: { instrument: { name: '', category: '' } }
-  
-      visit current_path
-      expect(page).to have_content("投稿に失敗しました")
+    context "無効なパラメータでmy楽器を投稿するとき" do
+      it "my楽器の作成が失敗し、エラーメッセージが表示される" do
+        post instruments_path, params: { instrument: { name: '', category: '' } }
+
+        visit current_path
+        expect(page).to have_content("投稿に失敗しました")
+      end
     end
   end
 
