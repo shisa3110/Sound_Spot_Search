@@ -4,34 +4,35 @@
       <%= form_with model: @instrument, local: true, data: { turbo: false } do |f| %>
         <div class="card-body">
         
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">タイトル</span>
+            </label>
+            <%= f.text_field :title, class: "input input-bordered bg-white", required: true %>
+          </div>
+
+          <div class="mb-3">
+            <label class="label">
+              <span class="label-text">my楽器写真</span>
+            </label>
+            <%= f.file_field :instrument_image, class: "form-control", accept: 'image/*', required: true %>
+            <%= f.hidden_field :image_cache %>
+          </div>
+
+        <fieldset class="fieldset">
+          <label class="label">
+            <span class="label-text">楽器の種類</span>
+          </label>
+          <%= f.select :kind, Instrument.enum_options_for_select(:kind), class: "select select-bordered w-full" %>
+        </fieldset>
+
         <div class="form-control">
           <label class="label">
-            <span class="label-text">タイトル</span>
+            <span class="label-text">コメント</span>
           </label>
-          <%= f.text_field :title, class: "input input-bordered bg-white", required: true %>
+          <%= f.text_area :comment, class: "textarea textarea-bordered bg-white", rows: 5, placeholder: "コメントを入力してください", required: true %>
         </div>
-
-        <div class="mb-3">
-        <label class="label">
-          <span class="label-text">my楽器写真</span>
-        </label>
-          <%= f.file_field :instrument_image, class: "form-control", accept: 'image/*', required: true %>
-          <%= f.hidden_field :image_cache %>
-        </div>
-
-      <fieldset class="fieldset">
-        <label class="label">
-          <span class="label-text">楽器の種類</span>
-        </label>
-        <%= f.select :kind, Instrument.enum_options_for_select(:kind), class: "select select-bordered w-full" %>
-      </fieldset>
-
-      <div class="form-control">
-      <label class="label">
-        <span class="label-text">コメント</span>
-      </label>
-      <%= f.text_area :comment, class: "textarea textarea-bordered bg-white", rows: 5, placeholder: "コメントを入力してください", required: true %>
-    </div>          
+          
         <div class="form-control mt-6">
           <%= f.submit "送信", class: "btn btn-primary" %>
         </div>

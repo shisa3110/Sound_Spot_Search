@@ -5,17 +5,17 @@
   <% if @my_reviews.present? %>
     <% @my_reviews.each do |review| %>
       <div class="flex flex-wrap justify-center mt-10 mx-5">
-      <div class="card bg-base-200 w-96 shadow-xl p-5">
-      <div class="text-right"> 
-        <%= render 'reviews/destroy_button', review: review %>
-      </div>
-      <h1 class="text-2xl font-bold">
-        <%= link_to review.spot.name, spot_path(review.spot), class: "hover:underline" %>
-      </h1>
-      <div class="py-2">
-        <p><%= review.body %></p>
-      </div>
-      </div>
+        <div class="card bg-base-200 w-96 shadow-xl p-5">
+          <div class="text-right"> 
+            <%= render 'reviews/destroy_button', review: review %>
+          </div>
+          <h1 class="text-2xl font-bold">
+            <%= link_to review.spot.name, spot_path(review.spot), class: "hover:underline" %>
+          </h1>
+          <div class="py-2">
+            <p><%= review.body %></p>
+          </div>
+        </div>
       </div>
     <% end %>
   <% else %>

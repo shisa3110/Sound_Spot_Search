@@ -2,10 +2,10 @@
   いいねした楽器たち
 </h1>
 <div class="flex flex-wrap justify-center gap-6">
-<% if @like_instruments.present? %>
-  <%= render @like_instruments %>
-<% else %>
-  <div class="mb-3">my楽器投稿をブックマークしていません</div>
-<% end %>
+  <% if @like_instruments.present? %>
+    <%= render @like_instruments %>
+  <% else %>
+    <div class="mb-3">my楽器投稿をブックマークしていません</div>
+  <% end %>
 </div>
 <%= paginate @like_instruments %>

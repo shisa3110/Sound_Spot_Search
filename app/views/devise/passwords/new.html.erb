@@ -15,11 +15,10 @@
     <div class="form-control mt-6">
       <button class="btn btn-active">パスワードリセットメール送信</button>
     </div>
-  <% end %>
-  <div class="text-center mt-2">
-  <%= render "devise/shared/links" %>
-  <%= link_to 'Googleアカウントでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
-  </div>
+    <% end %>
+    <div class="text-center mt-2">
+      <%= render "devise/shared/links" %>
+      <%= link_to 'Googleアカウントでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
+    </div>
   </div>
 </div>
-
