@@ -16,6 +16,11 @@
       <%= instrument.title %>
     </h1>
 
+    <h1 class="text-3xl font-bold text-center">
+      <%= instrument.user&.name %>
+    </h1>
+
+
     <h2 class="py-1 font-bold text-center">
       <%= instrument.human_attribute_enum(:kind) %>
     </h2>
