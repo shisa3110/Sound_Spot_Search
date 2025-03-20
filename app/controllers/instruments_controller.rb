@@ -26,7 +26,7 @@ class InstrumentsController < ApplicationController
     @instrument = current_user.instruments.find(params[:id])
     if @instrument.update(instrument_params)
       flash[:success] = "投稿を編集しました"
-      redirect_to instruments_pathx
+      redirect_to instruments_path
     else
       flash.now[:danger] = "編集に失敗しました"
       render :edit, status: :unprocessable_entity
