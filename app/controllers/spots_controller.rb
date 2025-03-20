@@ -12,7 +12,7 @@ class SpotsController < ApplicationController
 
   def index
     @q = Spot.ransack(params[:q])
-    @spots = @q.result(distinct: true).page(params[:page]).per(9)
+    @spots = @q.result(distinct: true).order(:name).page(params[:page]).per(9)
   end
 
   def create
