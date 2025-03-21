@@ -101,12 +101,14 @@ MVPリリース時
 使用する機能
 | カテゴリ       | 使用技術                                                                                                              | 
 | :------------: | :-------------------------------------------------------------------------------------------------------------------: | 
-| 開発環境       | Docker                                                                                                                | 
-| フロントエンド | Rails 7.0.8.4, JavaScript                                                                                             | 
-| バックエンド   | Rails 7.0.8.4, Ruby 3.2.2                                                                                             | 
-| データベース   | PostgreSQL                                                                                                                | 
-| Web API        | Google Maps API, Google Places API                                                                                                       | 
-| gem            | devise(ユーザー登録,管理), carrierwave(画像投稿,表示), <br> turbo-rails(ブックマーク、マップ), google maps(GoogleMapsAPI) ,google_places(Google place API),meta-tags(X共有機能の動的OGP導入), omniauth-google-oauth2,omniauth-rails_csrf_protection(Googleアカウント認証), kaminari(ページネーション)| 
+| サーバーサイド   | Rails 7.0.8.4・Ruby 3.2.2 |
+| フロントエンド | Ruby on Rails・JavaScript・SCSS・HTML |
+| CSSフレームワーク   | TailwindCSS + daisyUI|
+| データベース   | PostgreSQL | 
+| 環境構築       | Render・Docker | 
+| CI/CD       | GitHub Actions | 
+| Web API        | Google Maps API・Google Places API | 
+| gem            | devise(ユーザー認証)・carrierwave(画像投稿,表示), <br> turbo-rails(ブックマーク、マップ)・<br>meta-tags(X共有機能の動的OGP導入)</br>omniauth-google-oauth2(Googleアカウント認証)</br>kaminari(ページネーション) | 
 
 - 施設の情報をどのように集め、どのようにアプリに登録するか？</br>
   ・「施設名」「所在」「公式サイトURL」「電話番号」</br>
