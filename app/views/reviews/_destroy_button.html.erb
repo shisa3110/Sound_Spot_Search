@@ -1,0 +1,3 @@
+<%= link_to spot_review_path(review.spot_id, review.id), id: "destroy-button-for-review-#{review.id}", data: { turbo_method: :delete, turbo_confirm: "この口コミを削除しますか？" }  do %>
+  <i class="fa-solid fa-trash"></i>
+<% end %>

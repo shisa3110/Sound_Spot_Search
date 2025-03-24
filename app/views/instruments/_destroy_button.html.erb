@@ -1,0 +1,3 @@
+<%= link_to instrument_path(instrument), id: "destroy-button-for-instrumet-#{instrument.id}", data: { turbo_method: :delete, turbo_confirm: "このmy楽器投稿を削除しますか？" }  do %>
+  <i class="fa-solid fa-trash"></i>
+<% end %>

@@ -1,0 +1,14 @@
+<h1 class="text-xl font-bold text-center py-6">
+  一覧から探す
+</h1>
+
+<%= render 'spots/search_form' %>
+
+  <div class="flex flex-wrap justify-center gap-6 mt-10">
+    <% if @spots.present? %>
+      <%= render @spots %>
+    <% else %>
+      <div class="mb-3">施設情報がありません</div>
+    <% end %>
+  </div>
+<%= paginate @spots %>

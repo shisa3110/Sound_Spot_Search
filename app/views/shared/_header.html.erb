@@ -8,12 +8,24 @@
       <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %>
       </li>
       <li>
-        <details>
-          <summary>メニュー</summary>
-          <ul class="bg-base-200 rounded-t-none p-2">
-          <%= link_to '地図から探す', spots_map_path %>
-          </ul>
-        </details>
+      <details class="relative z-10">
+      <summary>メニュー</summary>
+      <ul class="absolute right-0  bg-base-200 rounded-t-none w-56 h-auto">
+        <li> <%= link_to 'マイページ', profile_users_path %> </li>
+        <li> <%= link_to '地図から探す', spots_map_path %> </li>
+        <li> <%= link_to '一覧から探す', spots_path %> </li>
+        <li> <%= link_to 'ブックマークした施設', bookmarks_spots_path %> </li>
+        <li> <%= link_to '投稿した口コミ', profile_my_reviews_users_path %> </li>
+        <li> <%= link_to 'みんなのmy楽器を見る', instruments_path %> </li>
+        <li> <%= link_to '投稿したmy楽器', profile_my_instruments_users_path %> </li>
+        <li> <%= link_to 'いいねした楽器たち', likes_instruments_path %> </li>
+        <li> <%= link_to 'my楽器を投稿する', new_instrument_path %> </li>
+        <br>
+        <li> <%= link_to '利用規約', terms_of_use_path %> </li>
+        <li> <%= link_to 'プライバシーポリシー', privacy_policy_path %> </li>
+        <li> <%= link_to 'お問い合わせ', "https://forms.gle/TApN2soYhatzZhKo6" %> </li>
+      </ul>
+    </details>
       </li>
     </ul>
   </div>

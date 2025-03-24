@@ -55,21 +55,17 @@ group :development, :test do
   # 環境変数を使うためのgem。
   gem "dotenv-rails"
 
-  # devise用の日本語化gem。
-  gem "devise-i18n"
-  gem "devise-i18n-views"
-
-  # enumのi18n化。
-  gem "enum_help"
-
+  gem "factory_bot_rails"
+  gem "rspec-rails"
+  gem "faker"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   # GitHubアクションのCI導入
-  gem "rspec-rails"
-  gem 'rubocop', require: false
+  gem "rubocop", require: false
+  gem "letter_opener_web"
 end
 
 group :test do
@@ -83,4 +79,17 @@ group :development, :production, :test do
   gem "devise"
   # Google Places APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
   gem "google_places"
+  # 画像投稿のためのgem。
+  gem "carrierwave", "~> 3.0"
+  gem "omniauth-google-oauth2"
+  gem "omniauth-rails_csrf_protection"
+  gem "meta-tags"
+  # ページネーションのためのgem。
+  gem "kaminari"
+  # 検索のためのgem。
+  gem "ransack"
+  gem "rails-i18n"
+  gem "mini_magick"
+  gem "devise-i18n"
+  gem "devise-i18n-views"
 end
