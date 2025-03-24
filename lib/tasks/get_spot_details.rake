@@ -1,7 +1,7 @@
 require "csv" # csvファイルを操作するライブラリの読み込み
 require "open-uri" # open-uriライブラリを読み込んでいる
 require "json" # jsonライブラリを読み込む
-API_KEY = ENV["GOOGLE_PLACES_API_KEY"] # .envに記述しているAPIキーを代入
+API_KEY = ENV["GOOGLE_MAPS_API_KEY"]
 
 namespace :get_spot_details do
   desc "Fetch and save shop details"
