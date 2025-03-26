@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_15_164057) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_16_072751) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "authentications", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_authentications_on_user_id"
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id"
@@ -22,6 +31,37 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_15_164057) do
     t.index ["spot_id"], name: "index_bookmarks_on_spot_id"
     t.index ["user_id", "spot_id"], name: "index_bookmarks_on_user_id_and_spot_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
+  create_table "instruments", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "comment", null: false
+    t.string "instrument_image"
+    t.integer "kind", default: 0
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_instruments_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "instrument_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instrument_id"], name: "index_likes_on_instrument_id"
+    t.index ["user_id", "instrument_id"], name: "index_likes_on_user_id_and_instrument_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "spot_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_reviews_on_spot_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "spot_tags", force: :cascade do |t|
@@ -49,6 +89,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_15_164057) do
     t.string "place_id"
     t.string "opening_hours"
     t.string "spot_image"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_spots_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -68,13 +110,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_15_164057) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "gender", default: 0
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["name"], name: "index_users_on_name", unique: true
+    t.index ["name"], name: "index_users_on_name"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "authentications", "users"
   add_foreign_key "bookmarks", "spots"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "instruments", "users"
+  add_foreign_key "likes", "instruments"
+  add_foreign_key "likes", "users"
+  add_foreign_key "reviews", "spots"
+  add_foreign_key "reviews", "users"
   add_foreign_key "spot_tags", "spots"
   add_foreign_key "spot_tags", "tags"
+  add_foreign_key "spots", "users"
 end

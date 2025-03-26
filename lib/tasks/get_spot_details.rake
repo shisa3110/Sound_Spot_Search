@@ -1,7 +1,7 @@
 require "csv" # csvファイルを操作するライブラリの読み込み
 require "open-uri" # open-uriライブラリを読み込んでいる
 require "json" # jsonライブラリを読み込む
-API_KEY = ENV["GOOGLE_PLACES_API_KEY"] # .envに記述しているAPIキーを代入
+API_KEY = ENV["GOOGLE_MAPS_API_KEY"]
 
 namespace :get_spot_details do
   desc "Fetch and save shop details"
@@ -38,6 +38,13 @@ namespace :get_spot_details do
         # JSON形式のデータを、Rubyオブジェクトに変換
         place_detail_data = JSON.parse(place_detail_page)
 
+        photo_reference = place_detail_data.dig("result", "photos", 0, "photo_reference")
+        spot_image = if photo_reference
+          "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=#{photo_reference}&key=#{API_KEY}"
+        else
+          nil
+        end
+
         # 取得したデータを保存するカラム名と同じキー名で、ハッシュ（result）に保存
         result = {}
         result[:name] = place_detail_data["result"]["name"]
@@ -52,6 +59,7 @@ namespace :get_spot_details do
         result[:latitude] = place_detail_data["result"]["geometry"]["location"]["lat"]
         result[:longitude] = place_detail_data["result"]["geometry"]["location"]["lng"]
         result[:place_id] = place_id
+        result[:spot_image] = spot_image
 
         result
       else
@@ -64,13 +72,15 @@ namespace :get_spot_details do
     csv_file = "lib/tasks/spot.csv"
     # csvファイルの繰り返し処理で実行しデータベースへ保存
     CSV.foreach(csv_file, headers: true) do |row|
+      category = row["カテゴリ"]
       spot_data = get_detail_data(row)
       if spot_data
+        spot_data[:category] = category
         spot = Spot.create!(spot_data)
-        puts "Spotを保存しました: #{row['スポット名']}"
+        puts "Spotを保存しました: #{row['施設名']}"
         puts "----------"
       else
-        puts "#{row['スポット名']}の保存に失敗しました"
+        puts "#{row['施設名']}の保存に失敗しました"
       end
     end
   end

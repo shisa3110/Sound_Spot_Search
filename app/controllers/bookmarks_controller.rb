@@ -3,7 +3,7 @@ class BookmarksController < ApplicationController
     # Spotモデルからspot_idを探す。
     @spot = Spot.find(params[:spot_id])
     # ログイン中のユーザーと紐づいたspot_idから、Userモデルのbookmarkメソッドを実行する。
-    current_user.bookmark(@spot) 
+    current_user.bookmark(@spot)
   end
 
   def destroy

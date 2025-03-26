@@ -1,46 +1,94 @@
 <div class="w-full flex justify-center">
-  <button class="btn btn-active font-title mt-3">
+  <button class="btn btn-active font-title mt-5 mx-5">
     <%= link_to '地図検索へ戻る', spots_map_path %>
   </button>
+  <button class="btn btn-active font-title mt-5 mx-5">
+    <%= link_to '一覧検索へ戻る', spots_path %>
+  </button>
 </div>
-<div class="flex items-center justify-center h-screen bg-100 w-full">
-  <div class="w-full max-w-lg py-8 rounded-lg shadow-lg bg-base-200 text-center">
-    <!-- ブックマークボタン、編集画面ボタン、削除ボタン -->
+<div class="flex flex-wrap justify-center gap-10 pt-5 py-10 my-5">
+  <div class="w-full max-w-3xl p-6 rounded-lg shadow-lg bg-base-200 relative flex flex-col md:flex-row">
+    
+    <!-- 右上 -->
     <% if user_signed_in? %>
-      <p class="py-1 text-right">
+      <p class="absolute top-4 right-4 space-x-2">
         <%= render 'bookmark_button', {spot: @spot} %>
+        <%= render 'share_button', {spot: @spot} %>
         <%= render 'edit_button', {spot: @spot} %>
         <%= render 'destroy_button', {spot: @spot} %>
       </p>
     <% end %>
-    <h1 class="text-3xl font-bold">
-      <%= j @spot.name %>
-    </h1>
-    <div class="flex justify-center">
-      <%= image_tag @spot.spot_image_url, class: "card-img-top", width: "200", height:"100" %>
+
+    <!-- 左側 -->
+    <div class="md:w-2/3 flex flex-col justify-between p-4">
+      <h1 class="text-3xl font-bold text-center md:text-left mb-4">
+        <%= j @spot.name %>
+      </h1>
+
+      <p class="py-1">
+        〒 <%= j @spot.postal_code %><br>
+        <%= j @spot.address %>
+      </p>
+
+      <p class="py-1">
+        TEL: <%= j @spot.phone_number %><br>
+        <% if valid_url?(@spot.web_site) %>
+          <%= link_to @spot.web_site, @spot.web_site, class: "link link-hover", target: "_blank", rel: "noopener" %>
+        <% else %>
+          <p class="text">Webサイト不明</p>
+        <% end %>
+      </p>
+
+      <div class="flex flex-wrap gap-2 py-2">
+        <% category_classes = { 
+            "studio" => "bg-blue-500", 
+            "karaoke" => "bg-red-500", 
+            "public_facilities" => "bg-green-500" 
+          } %>
+        <span class="px-3 py-1 text-white font-bold rounded-full text-sm <%= category_classes[@spot.category] %>">
+          <%= @spot.human_attribute_enum(:category) %>
+        </span>
+
+        <% @spot.tags.each do |tag| %>
+          <span class="px-3 py-1 bg-gray-500 text-white font-bold rounded-full text-sm">
+            <%= tag.name %>
+          </span>
+        <% end %>
+      </div>
+
+      <p class="py-1">
+        営業時間<br>
+        <%= simple_format(@spot.opening_hours) %>
+      </p>
     </div>
-    <p class="py-1">
-      <%= j @spot.category %>
-    </p>
-    <p class="py-1">
-      〒 <%= j @spot.postal_code %></br>
-      <%= j @spot.address %>
-    </p>
-    <p class="py-1">
-      TEL: <%= j @spot.phone_number %></br>
-      <% if valid_url?(@spot.web_site) %>
-        <%= link_to @spot.web_site, @spot.web_site, class: "link link-hover", target: "_blank", rel: "noopener" %>
-      <% else %>
-        <p class="text-error">webサイト不明</p>
-      <% end %>
-    </p>
-    <p class="py-1">
-      営業時間</br>
-      <%= simple_format(@spot.opening_hours) %>
-    </p>
-    <p class="py-1">
-      備考タグ</br>
-      <%= j (@spot.tag_names) %>
-    </p>
+
+    <!-- 右側の施設画像 -->
+    <div class="md:w-1/2 flex justify-center items-center p-4">
+      <%= image_tag @spot.spot_image_url, class: "rounded-lg shadow-lg", width: "350", height:"250" %>
+    </div>
+  </div>
+</div>
+
+<h2 class="text-lg font-bold my-2 text-center">この施設の口コミ</h2>
+
+<div class="flex flex-col md:flex-row justify-center gap-10 pt-5 py-10 mx-5">
+  <div class="bg-base-200 rounded-b-lg p-4 shadow-xl relative max-h-96 overflow-y-auto max-w-lg w-full"> 
+  <h3 class="text-lg font-bold my-2 text-center">口コミ一覧</h3>
+  <% if @reviews.present? %>
+    <% @reviews.each do |review| %>
+      <div class="border-b border-gray-300 pb-3 mb-3 last:border-none">
+        <%= render 'reviews/review', review: review %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="mb-3">口コミが投稿されていません。</div>
+  <% end %>
+</div>
+
+<div class="flex flex-wrap justify-center gap-10 pt-5 py-10 mx-5">
+  <div class="w-full max-w-lg py-8 rounded-lg shadow-lg bg-base-200 text-center">
+    <% if user_signed_in? %>
+      <%= render 'reviews/form', review: @review, spot: @spot %>
+    <% end %>
   </div>
 </div>

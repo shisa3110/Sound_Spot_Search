@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "unlike-button-for-instrument-#{@instrument.id}" do %>
+  <%= render 'instruments/to_like', instrument: @instrument %>
+<% end %>

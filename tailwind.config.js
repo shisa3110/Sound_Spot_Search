@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      title: ['Sans'],
+      title: ['Kiwi Maru'],
       body:  ['Kiwi Maru', 'Sans'],
     }
   },

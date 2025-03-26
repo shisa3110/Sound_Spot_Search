@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CMFG5KR260"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'G-CMFG5KR260');
+    </script>
     <title><%= content_for(:title) || "SoundSpotSearch" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,6 +33,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <script src="https://kit.fontawesome.com/d6379f9fdb.js" crossorigin="anonymous"></script>
+    <%= display_meta_tags %>
   </head>
 
   <body class="font-body">
@@ -32,9 +42,8 @@
     <% else %>
       <%= render 'shared/header_before_login' %>
     <% end %>
-    <p class="notice"><%= notice %></p>
-    <div class="bg-base-100">
-      <%= yield %>
+    <%= render 'shared/flash_message' %>
+    <%= yield %>
     </div>
     <%= render 'shared/footer' %>
   </body>

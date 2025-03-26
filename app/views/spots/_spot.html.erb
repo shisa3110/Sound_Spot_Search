@@ -1,11 +1,35 @@
-<div id="spot-id-<%= spot.id %>">
-  <div class="mt-2">
-    <ul class="flex justify-between w-full">
-      <%# 左寄せ %>
-      <div class="font-bold text-base text-primary">
-        <%# 施設名 %>
-        <%= link_to spot.name, spot_path(spot), class: "link" %>
-      </div>
-    </ul>
+<div class="card bg-base-200 w-96 shadow-xl pt-5" >
+  <% if user_signed_in? %>
+    <p class="py-1 mx-4 text-right">
+      <%= render 'bookmark_button', {spot: spot} %>
+    </p>
+  <% end %>
+  <h1 class="text-3xl font-bold text-center mx-4">
+    <%= spot.name %>
+  </h1>
+  <figure class="px-10 pt-10">
+    <%= image_tag spot.spot_image_url,  class: "rounded-xl " %>
+  </figure>
+  <div class="card-body items-center text-center">
+    <div class="flex flex-wrap gap-2 py-2">
+      <% category_classes = { 
+        "studio" => "bg-blue-500", 
+        "karaoke" => "bg-red-500", 
+        "public_facilities" => "bg-green-500" 
+        } %>
+      <span class="px-3 py-1 text-white font-bold rounded-full text-sm <%= category_classes[spot.category] %>">
+        <%= spot.human_attribute_enum(:category) %>
+      </span>
+
+      <% spot.tags.each do |tag| %>
+        <span class="px-3 py-1 bg-gray-500 text-white font-bold rounded-full text-sm">
+          <%= tag.name %>
+        </span>
+      <% end %>
+    </div>
+    <p class="py-1">
+      <%= j spot.address %>
+    </p>
+    <a href="<%= spot_path(spot) %>" class="btn btn-primary">詳細を見る</a>
   </div>
 </div>
