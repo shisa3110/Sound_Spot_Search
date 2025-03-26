@@ -1,0 +1,3 @@
+<%= link_to spot_path(spot_id: spot.id), id: "destroy-button-for-spot-#{spot.id}", data: { turbo_method: :delete, turbo_confirm: "この施設の情報を削除しますか？" }  do %>
+  <i class="fa-solid fa-trash"></i>
+<% end %>

@@ -1,0 +1,37 @@
+<div class="w-full max-w-3xl p-6 rounded-lg shadow-lg bg-base-200 relative flex flex-col md:flex-row">
+  <!-- 右上のボタン -->
+  <% if user_signed_in? %>
+    <p class="absolute top-4 right-4 space-x-2">
+      <%= render 'instruments/like_button', instrument: instrument %>
+      <% if current_user && current_user.own?(instrument) %>
+        <%= render 'instruments/edit_button', instrument: instrument %>
+        <%= render 'instruments/destroy_button', instrument: instrument %>
+      <% end %>
+    </p>
+  <% end %>
+
+  <!-- 左側: テキスト情報 -->
+  <div class="md:w-2/3 flex flex-col justify-center px-4">
+    <h1 class="text-3xl font-bold text-center">
+      <%= instrument.title %>
+    </h1>
+
+    <h1 class="text-3xl font-bold text-center">
+      <%= instrument.user&.name %>
+    </h1>
+
+
+    <h2 class="py-1 font-bold text-center">
+      <%= instrument.human_attribute_enum(:kind) %>
+    </h2>
+
+    <div class="py-1 bg-white p-3 rounded-lg shadow-inner border border-gray-300 min-h-[calc(2.rem*8)] max-h-40 overflow-y-auto">      
+      <%= simple_format(instrument.comment) %>
+    </div>
+  </div>
+
+  <!-- 右側: 楽器の画像 -->
+  <div class="md:w-2/3 flex justify-center items-center p-4">
+    <%= image_tag instrument.instrument_image_url, class: "rounded-lg shadow-lg", width: "500", height: "350" %>
+  </div>
+</div>
