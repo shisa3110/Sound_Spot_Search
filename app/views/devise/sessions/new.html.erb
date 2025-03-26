@@ -1,0 +1,34 @@
+<div class="flex items-center justify-center h-screen bg-base-100 pt-8 pb-12 px-6 w-full">
+  <div class="w-full max-w-lg p-4 rounded-lg shadow-lg bg-base-200">
+
+    <h2 class="text-lg font-bold my-2 text-center">ログイン</h2>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="card-body">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">メールアドレス</span>
+          </label>
+          <%= f.email_field :email, placeholder: "メールアドレス", class: "input input-bordered bg-white", required: true %>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">パスワード</span>
+          </label>
+          <%= f.password_field :password, placeholder: "パスワード", class: "input input-bordered bg-white", required: true %>
+        </div>
+
+        <div class="form-control mt-6">
+          <button class="btn btn-active">ログイン</button>
+        </div>
+
+        <div class="text-center mt-4">
+          <%= render "devise/shared/links" %>
+          <%= link_to 'Googleアカウントでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

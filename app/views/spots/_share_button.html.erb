@@ -1,0 +1,5 @@
+<% prepare_meta_tags @spot %> 
+<% twitter_share_url = "https://twitter.com/share?url= #{CGI.escape(spot_url(@spot))}" %>
+<%= link_to twitter_share_url, target: '_blank', data: { toggle: "tooltip", placement: "bottom" }, title: "Xでシェア" do %>
+  <i class="fa-brands fa-x-twitter"></i>
+<% end %>

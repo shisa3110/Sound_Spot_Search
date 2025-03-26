@@ -1,0 +1,52 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      spot: 施設
+      instrument: 楽器
+    attributes:
+      user:
+        gender: 性別
+      spot:
+        category: カテゴリ
+      instrument:
+        kind: 種類
+      user/gender:
+        gender_private: 非公開
+        male: 男性
+        female: 女性
+        others: その他
+      spot/category:
+        studio: スタジオ
+        karaoke: カラオケ
+        public_facilities: 公共施設
+      instrument/kind:
+        not_selected:  選択なし
+        violin: バイオリン
+        viola: ヴィオラ
+        cello: チェロ
+        contra_bass: コントラバス
+        acoustic_guitar: アコースティックギター
+        electric_guitar: エレキギター
+        electric_bass: エレキベース
+        piano: ピアノ
+        keyboard: キーボード
+        flute: フルート
+        piccolo: ピッコロ
+        clarinet: クラリネット
+        saxophone: サックス
+        oboe: オーボエ
+        english_horn: イングリッシュホルン
+        fagott: ファゴット
+        trumpet: トランペット
+        trombone: トロンボーン
+        horn: ホルン
+        euphonium: ユーフォニアム
+        tuba: チューバ
+        drum: ドラムセット
+        keyboard_percussion: 鍵盤打楽器
+        other_percussion: その他パーカッション
+        other_strings: その他弦楽器
+        other_wind_instrument: その他管楽器
+        japanese_instrument: 和楽器
+        

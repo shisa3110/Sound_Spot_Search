@@ -1,0 +1,209 @@
+<h1 class="text-xl font-bold text-center py-6">
+  地図から探す
+</h1>
+
+<div class="container flex justify-center text-center my-2 relative">
+  <input type="text" id="search-input" class="input input-bordered w-full max-w-xs  bg-white" placeholder="施設名または住所を入力">
+  <ul id="autocomplete-results" class="autocomplete-results hidden absolute w-full max-w-xs bg-white shadow-lg mt-1 z-10">
+</div>
+
+<div class="map-container flex justify-center">
+  <div id="map" class="w-full h-[500px] max-w-4xl"></div>
+</div>
+<div class="btn btn-active" id="current-location-button">
+現在地を取得する
+</div>
+
+<script>
+  let map, infoWindow, autocomplete;
+
+  function initMap(){
+    const mapElement = document.getElementById('map');
+
+    const mapOptions = {
+      center: {lat: 35.658034, lng: 139.701636},
+      zoom: 17,
+    };
+
+    map = new google.maps.Map(mapElement, mapOptions);
+    infoWindow = new google.maps.InfoWindow();
+  
+    // 位置情報取得用のボタンの定義
+    const locationButton = document.getElementById("current-location-button");
+    locationButton.classList.add("custom-map-control-button");
+    // ボタンをマップの上部中央に設置
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+  
+    // ボタンが押された場合の処理の定義
+    locationButton.addEventListener("click", () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            map.setCenter(pos);
+            infoWindow.setPosition(pos);
+            infoWindow.setContent("現在地が取得できました");
+            infoWindow.open(map);
+          },
+          (error) => {
+            console.error('位置情報の取得に失敗しました:', error);
+            alert('現在地を取得できませんでした。');
+          }
+        );
+      } else {
+        alert('このブラウザは位置情報に対応していません');
+      }
+    });
+  
+    // 施設情報に基づいてマーカーを表示させる処理
+    <% @spots.each do |spot| %>
+      (() => {
+        // カテゴリごとのピン画像を指定
+        const categoryIcons = {
+          "studio": "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",  // スタジオ（青）
+          "karaoke": "https://maps.google.com/mapfiles/ms/icons/red-dot.png",   // カラオケ（赤）
+          "public_facilities": "https://maps.google.com/mapfiles/ms/icons/green-dot.png" // 公共施設（緑）
+        };
+    
+        // カテゴリに対応するアイコンを取得（
+        const iconUrl = categoryIcons["<%= spot.category %>"] || "https://maps.google.com/mapfiles/ms/icons/gray-dot.png";
+    
+        const marker = new google.maps.Marker({
+          position: { lat: <%= spot.latitude %>, lng: <%= spot.longitude %> },
+          map: map,
+          title: '<%= j spot.name %>',
+          icon: {
+            url: iconUrl, // カスタムアイコンを設定
+            scaledSize: new google.maps.Size(40, 40) // アイコンのサイズ
+          }
+        });
+    
+
+      const infowindow = new google.maps.InfoWindow({
+        content: `
+        <div class="p-4 max-w-s rounded-lg shadow-md flex flex-col items-center py-2">
+          <h1 class="text-xl font-bold text-center py-3">
+            <%= j spot.name %>
+          </h1>
+          <p><%= j spot.address %></p>
+          </br>
+
+          <div class="flex flex-wrap gap-2 py-2">
+          <% category_classes = { 
+              "studio" => "bg-blue-500", 
+              "karaoke" => "bg-red-500", 
+              "public_facilities" => "bg-green-500" 
+            } %>
+          <span class="px-3 py-1 text-white font-bold rounded-full text-sm <%= category_classes[spot.category] %>">
+            <%= spot.human_attribute_enum(:category) %>
+          </span>
+  
+          <% spot.tags.each do |tag| %>
+            <span class="px-3 py-1 bg-gray-500 text-white font-bold rounded-full text-sm">
+              <%= tag.name %>
+            </span>
+          <% end %>
+        </div>
+        
+          <a href="<%= spot_path(spot) %>" class="btn btn-primary">
+            詳細を見る
+          </a>
+        </div>
+        `,
+      });
+
+      marker.addListener("click", () => {
+        infowindow.open({
+          anchor: marker,
+          map,
+        });
+      });
+
+      })();
+    <% end %>
+    const input = document.getElementById("search-input");
+    autocomplete = new google.maps.places.Autocomplete(input, {
+      types: ['geocode'], // 地名や住所に基づく候補を表示
+    });
+
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      
+      if (place.geometry) {
+        map.setCenter(place.geometry.location);
+        map.setZoom(18);
+
+
+
+        const infowindow = new google.maps.InfoWindow({
+          content: `<h1>${place.name}</h1><p>${place.formatted_address}</p>`,
+        });
+
+        marker.addListener("click", () => {
+          infowindow.open(map, marker);
+        });
+      }
+    });
+
+    // 検索機能 - 入力されたクエリに基づいてオートコンプリート候補を表示
+    document.getElementById("search-input").addEventListener("input", function () {
+      const query = this.value;
+  
+      if (query.length > 0) {
+        fetch(`/spots/autocomplete?q=${query}`)
+          .then(response => response.json())
+          .then(spots => {
+            const resultsList = document.getElementById('autocomplete-results');
+            resultsList.innerHTML = '';  // 既存の候補をクリア
+            resultsList.classList.remove('hidden'); // 候補リストを表示
+  
+            spots.forEach(spot => {
+              const listItem = document.createElement('li');
+              listItem.classList.add('autocomplete-item');
+              listItem.innerHTML = `${spot.name} - ${spot.address}`;
+              listItem.addEventListener('click', () => {
+                document.getElementById('search-input').value = spot.name;
+                resultsList.classList.add('hidden');
+                map.setCenter({ lat: spot.latitude, lng: spot.longitude });
+                map.setZoom(14);
+  
+                const marker = new google.maps.Marker({
+                  position: { lat: spot.latitude, lng: spot.longitude },
+                  map: map,
+                  title: spot.name,
+                });
+
+                const infowindow = new google.maps.InfoWindow({
+                  content: `
+                    <div class="p-4 max-w-s rounded-lg shadow-md flex flex-col items-center py-2">
+                      <h1 class="text-xl font-bold text-center py-6">${spot.name}</h1>
+                      <p>${spot.address}</p>
+                      <br>
+                      <a href="/spots/${spot.id}" class="btn btn-primary">詳細を見る</a>
+                    </div>
+                  `
+                });
+
+                marker.addListener("click", () => {
+                  infowindow.open(map, marker);
+                });
+              });
+              resultsList.appendChild(listItem);
+            });
+          })
+          .catch(error => {
+            console.error("検索エラー:", error);
+          });
+      } else {
+        document.getElementById('autocomplete-results').classList.add('hidden');
+      }
+    });
+  }
+
+  window.initMap = initMap;
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap" async defer>
+</script>

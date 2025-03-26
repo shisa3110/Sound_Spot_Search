@@ -1,0 +1,29 @@
+<div class="navbar bg-base-300">
+  <div class="flex-1 font-title">
+    <%= link_to "Sound Spot Search", root_path %>
+  </div>
+  <div class="flex-none font-body">
+    <ul class="menu menu-horizontal px-1">
+      <li>
+        <%= link_to "ユーザー登録", new_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to 'ログイン', new_user_session_path %>
+      </li>
+      <li>
+        <details class="relative z-10">
+          <summary>メニュー</summary>
+          <ul class="absolute right-0  bg-base-200 rounded-t-none w-56 h-auto">
+            <li> <%= link_to '地図から探す', spots_map_path %> </li>
+            <li> <%= link_to '一覧から探す', spots_path %> </li>
+            <li> <%= link_to 'みんなのmy楽器を見る', instruments_path %> </li>
+            <br>
+            <li> <%= link_to '利用規約', terms_of_use_path %> </li>
+            <li> <%= link_to 'プライバシーポリシー', privacy_policy_path %> </li>
+            <li> <%= link_to 'お問い合わせ', "https://forms.gle/TApN2soYhatzZhKo6" %> </li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+</div>

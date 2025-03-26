@@ -1,0 +1,24 @@
+<div class="flex items-center justify-center h-screen bg-base-100 pt-8 pb-12 px-6 w-full">
+  <div class="w-full max-w-lg p-4 rounded-lg shadow-lg bg-base-200">
+  <h2 class="text-lg font-bold my-2 text-center">パスワードリセット</h2>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-control">
+    <label class="label">
+      <span class="label-text">メールアドレス</span>
+    </label>
+    <%= f.email_field :email, placeholder: "xxxx@xxxx", class: "input input-bordered bg-white", required: true %>
+    </div>
+
+
+    <div class="form-control mt-6">
+      <button class="btn btn-active">パスワードリセットメール送信</button>
+    </div>
+    <% end %>
+    <div class="text-center mt-2">
+      <%= render "devise/shared/links" %>
+      <%= link_to 'Googleアカウントでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, data: { turbo: false } %>
+    </div>
+  </div>
+</div>
