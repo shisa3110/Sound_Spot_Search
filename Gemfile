@@ -81,6 +81,7 @@ group :development, :production, :test do
   gem "google_places"
   # 画像投稿のためのgem。
   gem "carrierwave", "~> 3.0"
+  gem "fog-aws"
   gem "omniauth-google-oauth2"
   gem "omniauth-rails_csrf_protection"
   gem "meta-tags"
