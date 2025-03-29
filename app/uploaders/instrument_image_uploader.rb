@@ -3,6 +3,13 @@ class InstrumentImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   # include CarrierWave::Vips
+
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
+  
   def default_url
     "instrument_default.png"
   end
