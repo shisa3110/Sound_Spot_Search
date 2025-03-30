@@ -11,7 +11,7 @@ RSpec.describe Review, type: :model do
     it 'bodyがない場合、バリデーションが機能してinvalidエラーになるか' do
       review_without_body = build(:review, body: nil)
       expect(review_without_body).to be_invalid
-      expect(review_without_body.errors[:body]).to eq ["口コミを投稿できませんでした"]
+      expect(review_without_body.errors[:body]).to eq ["が入力されていません。"]
     end
 
     it "bodyが65,535文字より多い場合、バリデーションが機能してinvalidになるか" do

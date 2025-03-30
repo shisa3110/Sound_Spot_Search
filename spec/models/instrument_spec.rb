@@ -11,19 +11,19 @@ RSpec.describe Instrument, type: :model do
     it "titleがない場合、バリデーションが機能してinvalidになるか" do
       instrument_without_title = build(:instrument, title: nil)
       expect(instrument_without_title).to be_invalid
-      expect(instrument_without_title.errors[:title]).to eq ["投稿に失敗しました"]
+      expect(instrument_without_title.errors[:title]).to eq ["が入力されていません。"]
     end
 
     it "commentがない場合、バリデーションが機能してinvalidになるか" do
       instrument_without_comment = build(:instrument, comment: nil)
       expect(instrument_without_comment).to be_invalid
-      expect(instrument_without_comment.errors[:comment]).to eq ["投稿に失敗しました"]
+      expect(instrument_without_comment.errors[:comment]).to eq ["が入力されていません。"]
     end
 
     it "instrument_imageがない場合、バリデーションが機能してinvalidになるか" do
       instrument_without_image = build(:instrument, instrument_image: nil)
       expect(instrument_without_image).to be_invalid
-      expect(instrument_without_image[:instrument_image]).to eq ["投稿に失敗しました"]
+      expect(instrument_without_image[:instrument_image]).to eq ["が入力されていません。"]
     end
 
     it "titleの文字数が120文字より多い場合、バリデーションが機能してinvalidになるか" do

@@ -16,10 +16,8 @@ RSpec.describe Spot, type: :model do
   describe 'save_with_tags' do
     it 'タグが正しく保存される' do
       spot.save
-
       spot.save_with_tags(tag_names: [ 'タグ1', 'タグ2' ])
       spot.reload
-
       expect(spot.tags.count).to eq(2) # 2つのタグが関連付けられていることを確認
       expect(spot.tags).to include(tag1, tag2) # タグが正しく関連付けられていることを確認
     end
