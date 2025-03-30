@@ -4,20 +4,22 @@ RSpec.describe User, type: :model do
   let(:user) { create(:user) }
   let(:spot) { create(:spot) }
   let(:instrument) { create(:instrument, user: user) }
-
-  describe "バリデーションのテスト" do
-    it "全ての値が適切なら有効である" do
+  
+  describe 'バリデーションチェック' do
+    it '設定したすべてのバリデーションが機能しているか' do
+      user = build(:user)
       expect(user).to be_valid
+      expect(user.errors).to be_empty
     end
 
-    it "名前がない場合は無効" do
-      user.name = nil
-      expect(user).to be_invalid
+    it 'nameがない場合、バリデーションが機能してinvalidエラーになるか' do
+      user_without_name = build(:user, name: nil)
+      expect(user_without_name).to be_invalid
     end
 
     it "メールアドレスがない場合は無効" do
-      user.email = nil
-      expect(user).to be_invalid
+      user_without_email = build(:user, email: nil)
+      expect(user_without_email).to be_invalid
     end
 
     it "パスワードが6文字未満だと無効" do
@@ -27,15 +29,13 @@ RSpec.describe User, type: :model do
     end
 
     it "パスワードと確認用パスワードが一致しないと無効" do
+      user.password = "password"
       user.password_confirmation = "differentpassword"
       expect(user).to be_invalid
     end
 
     it "重複したメールアドレスは無効" do
-      # 最初のユーザーを作成
       user = create(:user)
-
-      # 同じメールアドレスでユーザーを作成しようとしてエラーが発生することを確認
       new_user = build(:user, email: user.email)
       expect(new_user).not_to be_valid
       expect(new_user.errors[:email]).to include("は既に使用されています。")

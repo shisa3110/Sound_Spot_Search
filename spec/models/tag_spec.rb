@@ -9,7 +9,7 @@ RSpec.describe Tag, type: :model do
     end
 
     it 'nameがない場合、バリデーションが機能してinvalidエラーになるか' do
-      tag_without_name = build(:spot, name: nil)
+      tag_without_name = build(:tag, name: nil)
       expect(tag_without_name).to be_invalid
     end
 
