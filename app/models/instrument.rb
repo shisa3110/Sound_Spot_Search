@@ -1,5 +1,5 @@
 class Instrument < ApplicationRecord
-  validates :title, presence: true, length: { maximum: 255 }
+  validates :title, presence: true, length: { maximum: 120 }
   validates :comment, presence: true, length: { maximum: 65_535 }
   validates :instrument_image, presence: true
 
