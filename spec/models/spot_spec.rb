@@ -6,15 +6,22 @@ RSpec.describe Spot, type: :model do
   let!(:tag2) { create(:tag, name: 'タグ2') }
   let(:review) { create(:review) }
 
-  describe 'バリデーション' do
-    it 'nameが必須' do
-      spot.name = nil
-      expect(spot).to be_invalid
+  describe 'バリデーションチェック' do
+    it '設定したすべてのバリデーションが機能しているか' do
+      review = build(:spot)
+      expect(spot).to be_valid
+      expect(spot.errors).to be_empty
+    end
+
+    it 'nameがない場合、バリデーションが機能してinvalidエラーになるか' do
+      spot_without_name = build(:spot, name: nil)
+      expect(spot_without_name).to be_invalid
+      expect(spot_without_name.errors[:name]).to eq ["が入力されていません。"]
     end
   end
 
-  describe 'save_with_tags' do
-    it 'タグが正しく保存される' do
+  describe 'save_with_tagsメソッド' do
+    it 'タグが正しく保存されるか' do
       spot.save
       spot.save_with_tags(tag_names: [ 'タグ1', 'タグ2' ])
       spot.reload
@@ -23,8 +30,8 @@ RSpec.describe Spot, type: :model do
     end
   end
 
-  describe 'tag_names' do
-    it 'タグ名がカンマ区切りで返される' do
+  describe 'tag_namesメソッド' do
+    it 'タグ名がカンマ区切りで返されるか' do
       spot = create(:spot)
       spot.tags.create(name: 'タグ1')
       spot.tags.create(name: 'タグ2')
