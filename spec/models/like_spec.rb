@@ -11,13 +11,13 @@ RSpec.describe Like, type: :model do
     it '重複したuser_idが登録された場合、バリデーションが機能してinvalidエラーになるか' do
       like = create(:like)
       like_with_duplicated = build(:like, user_id: like.user_id)
-      expect(like_with_duplicated_user_id).to be_invalid
+      expect(like_with_duplicated).to be_invalid
     end
 
     it 'user_idが重複していない場合、バリデーションエラーが起きないか'
       like = create(:like)
       like_with_another = create(:like, user_id: like.user_id + 1)
-      expect(like_with_another_user_id).to be_valid
+      expect(like_with_another).to be_valid
     end
   end
 end

@@ -8,7 +8,7 @@ RSpec.describe Spot, type: :model do
 
   describe 'バリデーションチェック' do
     it '設定したすべてのバリデーションが機能しているか' do
-      review = build(:spot)
+      spot = build(:spot)
       expect(spot).to be_valid
       expect(spot.errors).to be_empty
     end
