@@ -1,4 +1,6 @@
 class InstrumentsController < ApplicationController
+  before_action :authenticate_user!, only: [ :edit, :update, :create, :new, :destroy ]
+  
   def index
     @instruments = Instrument.order(:created_at).page(params[:page]).per(6)
   end
