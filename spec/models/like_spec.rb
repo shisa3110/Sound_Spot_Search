@@ -9,8 +9,10 @@ RSpec.describe Like, type: :model do
     end
 
     it '重複したuser_idが登録された場合、バリデーションが機能してinvalidエラーになるか' do
-      like = create(:like)
-      like_with_duplicated = build(:like, user_id: like.user_id)
+      user = create(:user)
+      instrument = create(:instrument)
+      create(:like, user: user, instrument: instrument)
+      like_with_duplicated = build(:like, user: user, instrument: instrument)
       expect(like_with_duplicated).to be_invalid
     end
 

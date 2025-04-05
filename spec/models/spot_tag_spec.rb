@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe SpotTag, type: :model do
   describe 'バリデーションチェック' do
     it '設定したすべてのバリデーションが機能しているか' do
-      spot_tag = build(:spot_tag)
+      spot = create(:spot)
+      tag = create(:spot)
+      spot_tag = create(:spot_tag)
       expect(spot_tag).to be_valid
       expect(spot_tag.errors).to be_empty
     end
