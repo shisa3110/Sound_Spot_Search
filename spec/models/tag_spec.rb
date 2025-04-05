@@ -19,7 +19,7 @@ RSpec.describe Tag, type: :model do
       expect(tag_with_duplicated).to be_invalid
     end
 
-    it 'nameが重複していない場合、バリデーションエラーが起きないか'
+    it 'nameが重複していない場合、バリデーションエラーが起きないか' do
       tag = create(:tag)
       tag_with_another = build(:tag, name: tag.name + "a")
       expect(tag_with_another).to be_valid

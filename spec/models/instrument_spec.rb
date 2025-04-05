@@ -23,31 +23,26 @@ RSpec.describe Instrument, type: :model do
     it "instrument_imageがない場合、バリデーションが機能してinvalidになるか" do
       instrument_without_image = build(:instrument, instrument_image: nil)
       expect(instrument_without_image).to be_invalid
-      expect(instrument_without_image[:instrument_image]).to eq ["が入力されていません。"]
     end
 
     it "titleの文字数が120文字より多い場合、バリデーションが機能してinvalidになるか" do
       instrument = build(:instrument, title: Faker::Lorem.characters(number: 121))
       expect(instrument).to be_invalid
-      expect(instrument[:title]).to eq ["投稿に失敗しました"]
     end
 
     it "commentが65,535文字より多い場合、バリデーションが機能してinvalidになるか" do
       instrument = build(:instrument, comment: Faker::Lorem.characters(number: 65_536))
       expect(instrument).to be_invalid
-      expect(instrument[:comment]).to eq ["投稿に失敗しました"]
     end
 
     it "titleの文字数が120文字以下の場合、バリデーションエラーが起きないか" do
       instrument = build(:instrument, title: Faker::Lorem.characters(number: 120))
-      expect(instrument).to be_invalid
-      expect(instrument[:title]).to eq ["投稿に失敗しました"]
+      expect(instrument).to be_valid
     end
 
     it "commentが65,535文字以下の場合、バリデーションエラーが起きないか" do
       instrument = build(:instrument, comment: Faker::Lorem.characters(number: 65_535))
-      expect(instrument).to be_invalid
-      expect(instrument[:comment]).to eq ["投稿に失敗しました"]
+      expect(instrument).to be_valid
     end
   end
 end

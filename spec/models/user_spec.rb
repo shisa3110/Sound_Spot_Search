@@ -40,6 +40,35 @@ RSpec.describe User, type: :model do
       expect(new_user).not_to be_valid
       expect(new_user.errors[:email]).to include("は既に使用されています。")
     end
+
+    context 'password_required? が true の場合' do
+      it 'password が空なら無効になる' do
+        user = build(:user, password: '', password_confirmation: '')
+        expect(user).to be_invalid
+        expect(user.errors[:password]).to include("が入力されていません。") 
+      end
+
+      it 'password が6文字未満なら無効になる' do
+        user = build(:user, password: '12345', password_confirmation: '12345')
+        expect(user).to be_invalid
+        expect(user.errors[:password]).to include("は6文字以上に設定して下さい。")
+      end
+
+      it 'password が6文字以上なら有効になる' do
+        user = build(:user, password: '123456', password_confirmation: '123456')
+        expect(user).to be_valid
+      end
+    end
+
+    context 'password_required? が false の場合（既存ユーザーでパスワード未入力）' do
+      it '既存ユーザーでパスワードを変更しなければ有効になる' do
+        user = create(:user)
+        user.name = "新しい名前"
+        user.password = nil
+        user.password_confirmation = nil
+        expect(user).to be_valid
+      end
+    end
   end
 
 

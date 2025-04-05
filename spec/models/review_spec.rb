@@ -17,13 +17,21 @@ RSpec.describe Review, type: :model do
     it "bodyが65,535文字より多い場合、バリデーションが機能してinvalidになるか" do
       review = build(:review, body:Faker::Lorem.characters(number: 65_536))
       expect(review).to be_invalid
-      expect(review[:body]).to eq ["口コミを投稿できませんでした"]
     end
 
     it "commentが65,535文字以下の場合、バリデーションエラーが起きないか" do
       review = build(:review, body: Faker::Lorem.characters(number: 65_535))
-      expect(review).to be_invalid
-      expect(review[:body]).to eq ["口コミを投稿できませんでした"]
+      expect(review).to be_valid
+    end
+    
+    it "口コミ投稿に失敗したとき、フラッシュメッセージが表示される" do
+      spot = create(:spot)
+      sign_in create(:user)  # devise のヘルパー使ってログイン
+      post spot_reviews_path(spot), params: { review: { body: nil, rating: nil } }
+    
+      expect(response).to redirect_to(spot_path(spot))
+      follow_redirect!  # フラッシュを見るにはリダイレクト先を追う
+      expect(flash[:danger]).to eq "口コミを投稿できませんでした"
     end
   end
 end
