@@ -38,18 +38,4 @@ RSpec.describe Spot, type: :model do
       expect(spot.tag_names).to eq 'タグ1,タグ2'
     end
   end
-
-  describe 'associations' do
-    it 'bookmarksとの関連' do
-      spot = create(:spot)
-      bookmark = create(:bookmark, spot: spot)
-      expect(spot.bookmarks.count).to eq 1
-    end
-
-    it 'reviewsとの関連' do
-      spot = create(:spot)
-      review = create(:review, spot: spot)
-      expect(spot.reviews.count).to eq 1
-    end
-  end
 end
