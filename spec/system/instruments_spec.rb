@@ -37,7 +37,7 @@ RSpec.describe "Instruments", type: :system do
 
   describe "GET /instruments/:id/edit" do
     include_context 'with_sign_in'
-    let!(:instrument) { FactoryBot.create(:instrument)}
+    let!(:instrument) { FactoryBot.create(:instrument, user: user)}
 
     it "my楽器投稿の編集フォームが表示される" do
       visit edit_instrument_path(instrument.id)
@@ -47,25 +47,25 @@ RSpec.describe "Instruments", type: :system do
 
   describe "PATCH /instruments/:id" do
     include_context 'with_sign_in'
-    let!(:instrument) { FactoryBot.create(:instrument)}
+    let!(:instrument) { FactoryBot.create(:instrument, user: user)}
 
     it "my楽器投稿が更新され、一覧ページにリダイレクトする" do
       visit edit_instrument_path(instrument.id)
-      fill_in 'タイトル', with: "更新した楽器"
+      fill_in 'instrument_title', with: "更新した楽器"
       click_button "送信"
-      expect(page).to have_content("投稿の編集に成功しました")
+      expect(page).to have_content("投稿を編集しました")
     end
     it "my楽器投稿の更新が失敗し、エラーメッセージが表示される" do
       visit edit_instrument_path(instrument)
-      fill_in 'タイトル', with: ""
+      fill_in 'instrument_title', with: ""
       click_button "送信"
-      expect(page).to have_content("編集の保存に失敗しました")
+      expect(page).to have_content("編集に失敗しました")
     end
   end
 
   describe "DELETE /instruments/:id" do
     include_context 'with_sign_in'
-    let!(:instrument) { FactoryBot.create(:instrument)}
+    let!(:instrument) { FactoryBot.create(:instrument, user: user)}
 
     it "my楽器投稿が削除され、一覧ページにリダイレクトする" do
       visit instruments_path
@@ -76,6 +76,9 @@ RSpec.describe "Instruments", type: :system do
   end
 
   describe "GET /instruments/likes" do
+    include_context 'with_sign_in'
+    let!(:instrument) { FactoryBot.create(:instrument, user: user)}
+
     it "お気に入りの楽器が表示される" do
       visit likes_instruments_path
       expect(page).to have_content("いいねした楽器たち")
