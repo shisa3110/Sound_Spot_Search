@@ -1,22 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe "Spots", type: :system do
-  let(:user) { create(:user) }
-
-  before do
-    sign_in user
-  end
 
   describe '施設情報作成' do
+    let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
+    include_context 'with_sign_in'
+
+
     it '施設情報を作成できる' do
       visit new_spot_path
+      puts "現在のパス: #{current_path}"
 
-      fill_in 'spot[name]', with: '新しい施設'
-      fill_in 'spot[category]', with: 'studio'
-      fill_in 'spot[address]', with: '東京都渋谷区1-1-1'
-      fill_in 'spot[phone_number]', with: '03-1234-5678'
-      fill_in 'spot[web_site]', with: 'https://example.com'
-      attach_file 'spot[spot_image]', Rails.root.join('spec/fixtures/files/test_image.png')
+      fill_in '施設名', with: '新しい施設'
+      select 'スタジオ', from: "spot_category"
+      fill_in 'spot_address', with: '東京都渋谷区1-1-1'
+      fill_in 'spot_phone_number_', with: '00-0000-0000'
+      fill_in 'spot_web_site', with: 'https://example.com'
+      attach_file 'spot_spot_image', Rails.root.join('spec/fixtures/files/test_image.png')
 
       click_button '送信'
 
@@ -25,12 +25,14 @@ RSpec.describe "Spots", type: :system do
   end
 
   describe '施設情報の編集' do
-    let(:spot) { create(:spot, user: user) }
+    let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
+    include_context 'with_sign_in'
+    let!(:spot) { create(:spot, user: user) }
 
     it '施設情報を編集できる' do
       visit edit_spot_path(spot)
 
-      fill_in "spot[name]", with: '編集したスポット'
+      fill_in "spot_name", with: '編集したスポット'
       click_button '更新'
 
       expect(page).to have_content '施設情報が更新されました'
@@ -38,7 +40,8 @@ RSpec.describe "Spots", type: :system do
   end
 
   describe '施設情報の削除' do
-    let(:spot) { create(:spot, user: user) }
+    include_context 'with_sign_in'
+    let!(:spot) { create(:spot, user: user) }
 
     it '施設情報を削除できる', js: true do
       visit spot_path(spot)
