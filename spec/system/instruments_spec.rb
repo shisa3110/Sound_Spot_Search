@@ -12,6 +12,7 @@ RSpec.describe "Instruments", type: :system do
   end
 
   describe "GET /instruments/new" do
+    let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
     include_context 'with_sign_in'
 
     it "ログイン後にmy楽器を投稿するフォームが表示される" do
@@ -22,7 +23,9 @@ RSpec.describe "Instruments", type: :system do
   end
 
   describe "POST /instruments" do
+    let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
     include_context 'with_sign_in'
+
     it "my楽器投稿が作成され、一覧ページにリダイレクトする" do
       visit new_instrument_path
       fill_in 'instrument_title', with: "新しい楽器"
@@ -36,6 +39,7 @@ RSpec.describe "Instruments", type: :system do
   
 
   describe "GET /instruments/:id/edit" do
+    let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
     include_context 'with_sign_in'
     let!(:instrument) { FactoryBot.create(:instrument, user: user)}
 
@@ -46,6 +50,7 @@ RSpec.describe "Instruments", type: :system do
   end
 
   describe "PATCH /instruments/:id" do
+    let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
     include_context 'with_sign_in'
     let!(:instrument) { FactoryBot.create(:instrument, user: user)}
 
@@ -64,10 +69,11 @@ RSpec.describe "Instruments", type: :system do
   end
 
   describe "DELETE /instruments/:id" do
+    let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
     include_context 'with_sign_in'
     let!(:instrument) { FactoryBot.create(:instrument, user: user)}
 
-    it "my楽器投稿が削除され、一覧ページにリダイレクトする" do
+    it "my楽器投稿が削除され、一覧ページにリダイレクトする"
       visit instruments_path
       find("a[data-method='delete'][href='#{instrument_path(instrument)}']").click
       expect(page).to have_content("削除に成功しました。")
@@ -76,6 +82,7 @@ RSpec.describe "Instruments", type: :system do
   end
 
   describe "GET /instruments/likes" do
+    let!(:user) { FactoryBot.create(:user, email: 'test@example.com', password: 'password') }
     include_context 'with_sign_in'
     let!(:instrument) { FactoryBot.create(:instrument, user: user)}
 
