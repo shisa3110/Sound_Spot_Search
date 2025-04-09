@@ -11,10 +11,10 @@ RSpec.describe "Spots", type: :system do
       visit new_spot_path
       puts "現在のパス: #{current_path}"
 
-      fill_in '施設名', with: '新しい施設'
+      fill_in 'spot_name', with: '新しい施設'
       select 'スタジオ', from: "spot_category"
       fill_in 'spot_address', with: '東京都渋谷区1-1-1'
-      fill_in 'spot_phone_number_', with: '00-0000-0000'
+      fill_in 'spot_phone_number', with: '00-0000-0000'
       fill_in 'spot_web_site', with: 'https://example.com'
       attach_file 'spot_spot_image', Rails.root.join('spec/fixtures/files/test_image.png')
 
