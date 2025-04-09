@@ -73,7 +73,7 @@ RSpec.describe "Instruments", type: :system do
     include_context 'with_sign_in'
     let!(:instrument) { FactoryBot.create(:instrument, user: user)}
 
-    it "my楽器投稿が削除され、一覧ページにリダイレクトする"
+    it "my楽器投稿が削除され、一覧ページにリダイレクトする" do
       visit instruments_path
       find("a[data-method='delete'][href='#{instrument_path(instrument)}']").click
       expect(page).to have_content("削除に成功しました。")
