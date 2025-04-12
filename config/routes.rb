@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  get "images/ogp", to: "images#ogp", as: "images_ogp"
-  devise_for :users, controllers: {
-    registrations: "users/registrations",
-    omniauth_callbacks: "users/omniauth_callbacks"
-  }
+  root "static_pages#top"
+
+  get "terms_of_use", to: "static_pages#terms_of_use"
+  get "privacy_policy", to: "static_pages#privacy_policy"
+
+  get "up" => "rails/health#show", as: :rails_health_check
+  
   resource :users, only: %i[show] do
     collection do
       get "profile", to: "users#profile"
@@ -12,15 +14,13 @@ Rails.application.routes.draw do
     end
   end
 
+  get "images/ogp", to: "images#ogp", as: "images_ogp"
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root "static_pages#top"
-
-  get "terms_of_use", to: "static_pages#terms_of_use"
-  get "privacy_policy", to: "static_pages#privacy_policy"
-
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
 
 
   # 地図検索ページのルーティング
@@ -44,13 +44,15 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: %i[create destroy]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+end
+
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
   # root "posts#index"
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
-end
