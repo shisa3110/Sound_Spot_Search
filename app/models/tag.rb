@@ -3,4 +3,8 @@ class Tag < ApplicationRecord
   has_many :spots, through: :spot_tags
   # tagには必ずnameをつけ、他のものと被らない。
   validates :name, presence: true, uniqueness: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["created_at", "id", "name", "updated_at"]
+  end
 end

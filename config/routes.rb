@@ -36,7 +36,11 @@ Rails.application.routes.draw do
 
   resources :bookmarks, only: %i[create destroy]
 
-  get 'tags/autocomplete', to: 'tags#autocomplete'
+  resources :tags, only: [] do
+    collection do
+      get :autocomplete
+    end
+  end
 
   resources :instruments, only: %i[index new create edit update destroy] do
     resources :likes, only: %i[create destroy]
