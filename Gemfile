@@ -80,7 +80,7 @@ group :development, :production, :test do
   # Google Places APIを用いて施設情報(spots)テーブルにデータを取り込むためのgem。
   gem "google_places"
   # 画像投稿のためのgem。
-  gem "carrierwave", "~> 3.0"
+  gem "carrierwave", "~> 3.1"
   gem "fog-aws"
   gem "omniauth-google-oauth2"
   gem "omniauth-rails_csrf_protection"
