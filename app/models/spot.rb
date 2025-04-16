@@ -1,5 +1,4 @@
 class Spot < ApplicationRecord
-  # spotが削除されると、spotと関連していたブックマークも削除される。
   has_many :bookmarks, dependent: :destroy
   has_many :spot_tags
   has_many :tags, through: :spot_tags

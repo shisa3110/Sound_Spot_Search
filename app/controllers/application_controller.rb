@@ -5,14 +5,11 @@ class ApplicationController < ActionController::Base
 
   allow_browser versions: :modern
 
-  # ここ以下のメソッドは、呼び出された他のコントローラからも参照できる
   protected
 
   protected
   def configure_permitted_parameters
-    # ユーザー登録時にnameのストロングパラメータを追加（サインアップ時にname,genderを入力する場合は追記）
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :gender ])
-    # ユーザー編集時にnameとprofileのストロングパラメータを追加
     devise_parameter_sanitizer.permit(:account_update, keys: [ :name ])
   end
 end
