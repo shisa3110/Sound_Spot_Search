@@ -68,11 +68,12 @@ my楽器の写真をコメント付きで投稿してユーザー同士で自慢
 使用する機能
 | カテゴリ       | 使用技術                                                                                                              | 
 | :------------: | :-------------------------------------------------------------------------------------------------------------------: | 
-| サーバーサイド   | Rails 7.0.8.4・Ruby 3.2.2 |
-| フロントエンド | Ruby on Rails・JavaScript・SCSS・HTML |
+| サーバーサイド   | Rails 8.0.2・Ruby 3.2.2 |
+| フロントエンド | Ruby on Rails・JavaScript・CSS・HTML |
 | CSSフレームワーク   | TailwindCSS + daisyUI|
 | データベース   | PostgreSQL | 
-| 環境構築       | Render・Docker | 
+| 認証 | Devise |
+| 環境構築       | Render.com・Docker | 
 | CI/CD       | GitHub Actions | 
 | Web API        | Google Maps API・Google Places API | 
 | gem            | devise(ユーザー認証)・carrierwave(画像投稿,表示), <br> turbo-rails(ブックマーク、マップ)・<br>meta-tags(X共有機能の動的OGP導入)</br>omniauth-google-oauth2(Googleアカウント認証)</br>kaminari(ページネーション) | 
