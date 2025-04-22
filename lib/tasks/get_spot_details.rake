@@ -6,7 +6,7 @@ API_KEY = ENV["GOOGLE_MAPS_API_KEY"]
 namespace :get_spot_details do
   desc "Fetch and save shop details"
   task get_and_save_details: :environment do
-    # 電話番号からplace_idを取得するメソッド
+    # 施設名からplace_idを取得するメソッド
     def get_place_id(name)
       client = GooglePlaces::Client.new(API_KEY)
       spot = client.spots_by_query(name).first
