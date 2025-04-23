@@ -83,4 +83,4 @@ my楽器の写真をコメント付きで投稿してユーザー同士で自慢
 https://www.figma.com/design/8ufxjUSCwOF9D7Y4nC7ZI3/Sound-Spot-Search_%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?node-id=0-1&t=hnwtErcjwytmImqV-1
 
 ## ER図
-![ER図](https://i.gyazo.com/c3ff4f3198bd94ee34020574a806901b.png "ER図")
+![ER図](https://i.gyazo.com/12bfc3094157c3b30beaa2fdc5839bd4.png "ER図")
