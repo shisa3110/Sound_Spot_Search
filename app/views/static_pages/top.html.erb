@@ -13,12 +13,12 @@
       ※施設ご利用の際は、各施設のルールに則ってご予約・ご利用ください。
       </p>
       <div class="flex flex-wrap justify-center gap-20">
-      <button class="btn btn-primary">
-        <%= link_to '地図から探す', spots_map_path %>
-      </button>
-      <button class="btn btn-primary">
-        <%= link_to '一覧検索から探す', spots_path %>
-      </button>
+        <%= link_to spots_map_path, class: 'btn btn-primary flex items-center justify-center' do %>
+          地図から探す
+        <% end %>
+        <%= link_to spots_path, class: 'btn btn-primary flex items-center justify-center' do %>
+          一覧検索から探す
+        <% end %>
       </div>
       <div class="flex flex-wrap justify-center gap-6">
       <div class="card w-80 bg-base-200 mt-6 card-xs shadow-sm">
