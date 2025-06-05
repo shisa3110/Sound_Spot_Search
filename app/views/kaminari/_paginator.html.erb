@@ -8,7 +8,7 @@
 -%>
 <div class="join text-xs mt-8 mx-auto flex justify-center">
 <%= paginator.render do -%>
-  <nav class="pagination flex justify-center" role="navigation" aria-label="pager">
+  <nav class="pagination" role="navigation" aria-label="pager">
     <%= prev_page_tag unless current_page.first? %>
     <% each_page do |page| -%>
       <% if page.display_tag? -%>
