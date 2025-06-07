@@ -49,4 +49,8 @@ ja:
         other_strings: その他弦楽器
         other_wind_instrument: その他管楽器
         japanese_instrument: 和楽器
+  views:
+    pagination:
+      previous: 前へ
+      next: 次へ
         
